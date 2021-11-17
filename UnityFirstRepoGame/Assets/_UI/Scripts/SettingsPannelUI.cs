@@ -11,12 +11,30 @@ public class SettingsPannelUI : MonoBehaviour
 	public GameObject MusicOnBtn;
 	public GameObject MusicOffBtn;
 
-
 	void Start()
 	{
+		//if (PlayerPrefs.GetInt("Sound", 0) == 1)
+		//{
+		//	SoundOnBtn.SetActive(true);
+		//	SoundOffBtn.SetActive(false);
+		//}
+		//else if (PlayerPrefs.GetInt("Sound", 0) == 0)
+		//{
+		//	SoundOnBtn.SetActive(false);
+		//	SoundOffBtn.SetActive(true);
+		//}
 
+		//if (PlayerPrefs.GetInt("Music", 0) == 1)
+		//{
+		//	MusicOnBtn.SetActive(true);
+		//	MusicOffBtn.SetActive(false);
+		//}
+		//else if (PlayerPrefs.GetInt("Music", 0) == 0)
+		//{
+		//	MusicOnBtn.SetActive(false);
+		//	MusicOffBtn.SetActive(true);
+		//}
 	}
-
 
 	public static SettingsPannelUI ShowUI()
 	{
@@ -41,31 +59,41 @@ public class SettingsPannelUI : MonoBehaviour
 
 	public void OnBackPressed()
 	{
+		SoundManager.instance.playBtnClickSound();
+		Time.timeScale = 1;
 		//this.gameObject.GetComponent<Animator>().Play("panel Animations reverse");
 		//SoundManager.instance.Play_Button_Sound();
-		Destroy(gameObject, 0.5f);
+		Destroy(gameObject, 0.2f);
 	}
 
 	public void turnMusicOn()
 	{
+		SoundManager.instance.playBtnClickSound();
+		PlayerPrefs.SetInt("Music", 1);
 		MusicOnBtn.SetActive(false);
 		MusicOffBtn.SetActive(true);
 	}
 
 	public void turnMusicOff()
 	{
+		SoundManager.instance.playBtnClickSound();
+		PlayerPrefs.SetInt("Music", 0);
 		MusicOnBtn.SetActive(true);
 		MusicOffBtn.SetActive(false);
 	}
 
 	public void turnSoundOn()
 	{
+		SoundManager.instance.playBtnClickSound();
+		PlayerPrefs.SetInt("Sound", 1);
 		SoundOnBtn.SetActive(false);
 		SoundOffBtn.SetActive(true);
 	}
 
 	public void turnSoundOff()
 	{
+		SoundManager.instance.playBtnClickSound();
+		PlayerPrefs.SetInt("Sound", 0);
 		SoundOnBtn.SetActive(true);
 		SoundOffBtn.SetActive(false);
 	}

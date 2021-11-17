@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
+    public GameObject SoundOnBtn;
+    public GameObject SoundOffBtn;
+    public GameObject MusicOnBtn;
+    public GameObject MusicOffBtn;
 
     private void Awake()
     {
@@ -13,7 +18,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
@@ -24,15 +29,51 @@ public class UIManager : MonoBehaviour
 
     public void openSettingsPannel()
     {
+        SoundManager.instance.playBtnClickSound();
         SettingsPannelUI.ShowUI();
     }
 
     public void openShopPannel()
     {
+        SoundManager.instance.playBtnClickSound();
         ShopPannelUI1.ShowUI();
     }
 
-   
+    public void AdditionAndSubtraction()
+    {
+        SoundManager.instance.playBtnClickSound();
+        PlayerPrefs.SetInt("gameType", 1);
+        SceneManager.LoadScene("SampleScene");
+    }
 
+    public void MultiplicationAndDivision()
+    {
+        SoundManager.instance.playBtnClickSound();
+        PlayerPrefs.SetInt("gameType", 2);
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    public void Equations()
+    {
+        SoundManager.instance.playBtnClickSound();
+        PlayerPrefs.SetInt("gameType", 3);
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    public void Conversions()
+    {
+        SoundManager.instance.playBtnClickSound();
+        PlayerPrefs.SetInt("gameType", 4);
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    public void GenerateRandomQuestions()   
+    {
+        SoundManager.instance.playBtnClickSound();
+        PlayerPrefs.SetInt("gameType", 5);
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    
 
 }

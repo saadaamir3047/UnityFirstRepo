@@ -35,6 +35,7 @@ public class ShopPannelUI1 : MonoBehaviour
 
 	public void OnBackPressed()
 	{
+		SoundManager.instance.playBtnClickSound();
 		//this.gameObject.GetComponent<Animator>().Play("panel Animations reverse");
 		//SoundManager.instance.Play_Button_Sound();
 		Destroy(gameObject, 0.5f);
