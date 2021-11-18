@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
     public void retry()
     {
         SoundManager.instance.playBtnClickSound();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("SampleScene");
         retrypanel.SetActive(false);
 
     }

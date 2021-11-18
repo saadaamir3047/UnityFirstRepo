@@ -13,28 +13,29 @@ public class SettingsPannelUI : MonoBehaviour
 
 	void Start()
 	{
-		//if (PlayerPrefs.GetInt("Sound", 0) == 1)
-		//{
-		//	SoundOnBtn.SetActive(true);
-		//	SoundOffBtn.SetActive(false);
-		//}
-		//else if (PlayerPrefs.GetInt("Sound", 0) == 0)
-		//{
-		//	SoundOnBtn.SetActive(false);
-		//	SoundOffBtn.SetActive(true);
-		//}
+        if (PlayerPrefs.GetInt("Sound", 0) == 1)
+        {
+            SoundOnBtn.SetActive(false);
+            SoundOffBtn.SetActive(true);
+        }
+        else if (PlayerPrefs.GetInt("Sound", 0) == 0)
+        {
+            SoundOnBtn.SetActive(true);
+            SoundOffBtn.SetActive(false);
+        }
 
-		//if (PlayerPrefs.GetInt("Music", 0) == 1)
-		//{
-		//	MusicOnBtn.SetActive(true);
-		//	MusicOffBtn.SetActive(false);
-		//}
-		//else if (PlayerPrefs.GetInt("Music", 0) == 0)
-		//{
-		//	MusicOnBtn.SetActive(false);
-		//	MusicOffBtn.SetActive(true);
-		//}
-	}
+        if (PlayerPrefs.GetInt("Music", 0) == 1)
+        {
+            MusicOnBtn.SetActive(false);
+            MusicOffBtn.SetActive(true);
+        }
+        else if (PlayerPrefs.GetInt("Music", 0) == 0)
+        {
+            MusicOnBtn.SetActive(true);
+            MusicOffBtn.SetActive(false);
+
+        }
+    }
 
 	public static SettingsPannelUI ShowUI()
 	{
@@ -80,6 +81,7 @@ public class SettingsPannelUI : MonoBehaviour
 		PlayerPrefs.SetInt("Music", 0);
 		MusicOnBtn.SetActive(true);
 		MusicOffBtn.SetActive(false);
+		SoundManager.instance.bgMusic.Play();
 	}
 
 	public void turnSoundOn()

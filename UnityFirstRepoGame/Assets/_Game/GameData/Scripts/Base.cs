@@ -86,7 +86,8 @@ public class Base : MonoBehaviour
 
                 }
                 gameObject.GetComponent<Renderer>().material.color = Color.blue;
-                good.Play();
+                if(SoundManager.instance.canPlaySound)
+                    good.Play();
             }
         
             if (wrightAns !=true)
