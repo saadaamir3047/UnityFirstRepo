@@ -4737,6 +4737,7 @@ GameObject:
   - component: {fileID: 1880164197650298616}
   - component: {fileID: 1880164197668718166}
   - component: {fileID: 1880164197668266930}
+  - component: {fileID: 4795904375659499132}
   m_Layer: 0
   m_Name: YellowBloodExplosion
   m_TagString: Untagged
@@ -9538,6 +9539,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &4795904375659499132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880164197650561996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 102b13beb64979c4d85e378503296284, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secondsToDestroy: 3
 --- !u!1 &1880164197650590238
 GameObject:
   m_ObjectHideFlags: 0

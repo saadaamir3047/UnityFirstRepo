@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,12 +15,18 @@ public class GameManager : MonoBehaviour
     public bool conversion = false;
     public bool all = false;
 
+    public int score;
+    public Text scoreText;
+    public int HighScore;
+    public Text highScoreText;
+
 
     // Start is called before the first frame update
     
     void Start()
     {
         checkType();
+        score = 0;
     }
 
     public void checkType()
@@ -60,14 +67,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        scoreText.text = "Score: " + score;
+        if (PlayerPrefs.GetInt("HighScore", 0) < score)
+            PlayerPrefs.SetInt("HighScore", score);
     }
+
     public void retry()
     {
         SoundManager.instance.playBtnClickSound();
         SceneManager.LoadScene("SampleScene");
         retrypanel.SetActive(false);
-
     }
 
     public void gameover()

@@ -23,7 +23,7 @@ public class Base : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+
     }
     private void Awake()
     {
@@ -53,6 +53,7 @@ public class Base : MonoBehaviour
         bj.MoveTo();
             if (!bj.isDead && wrightAns)
             {
+                gm.score++;
                 bj.MoveTo();
                 AnswerSpawner.instance.newAns(transform.parent);
                 cm.NewPos();
@@ -91,15 +92,14 @@ public class Base : MonoBehaviour
             }
         
             if (wrightAns !=true)
-
             {
                 bj.MoveTo();
                 gameObject.GetComponent<Renderer>().material.color = Color.red;
                 bj.isDead = true;
-                retrypanel.SetActive(true);
+                GameOverPannelUI.ShowUI();
+                //retrypanel.SetActive(true);
                 //bj.anim.SetBool("Dead", true);
             }
-            
         }
     }
 }

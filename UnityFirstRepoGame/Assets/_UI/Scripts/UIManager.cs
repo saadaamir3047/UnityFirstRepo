@@ -39,6 +39,12 @@ public class UIManager : MonoBehaviour
         ShopPannelUI1.ShowUI();
     }
 
+    public void openCartPannel()
+    {
+        SoundManager.instance.playBtnClickSound();
+        CartPannelUI.ShowUI();
+    }
+
     public void AdditionAndSubtraction()
     {
         SoundManager.instance.playBtnClickSound();

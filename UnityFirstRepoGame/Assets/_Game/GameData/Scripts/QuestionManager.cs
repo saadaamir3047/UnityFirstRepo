@@ -64,11 +64,11 @@ public class QuestionManager : MonoBehaviour
             slider.GetComponent<Slider>().value += Time.deltaTime;
             if (slider.GetComponent<Slider>().value >= 10)
             {
-                gm.gameover();
+                GameOverPannelUI.ShowUI();
+                gm.bj.isDead = true;
+                //gm.gameover();
             }
-
         }
-
     }
     public void add2number1to10()
     {

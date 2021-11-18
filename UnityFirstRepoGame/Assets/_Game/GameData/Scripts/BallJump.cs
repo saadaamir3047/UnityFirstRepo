@@ -97,6 +97,13 @@ public class BallJump : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
+        if(other.gameObject.tag == "Diamond")
+        {
+            Destroy(other.gameObject);
+            SoundManager.instance.allEffects[4].Play();
+        }
+
+
         if (isDead && other.gameObject.tag == "ground")
         {
             anim.SetBool("Dead", true);
@@ -119,7 +126,6 @@ public class BallJump : MonoBehaviour
 
             //anim.SetBool("IsGrounded", false);
             anim.SetBool("Jump", false);
-
         }
     }
 
