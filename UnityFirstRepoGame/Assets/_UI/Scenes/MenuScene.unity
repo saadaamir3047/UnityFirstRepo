@@ -3070,6 +3070,7 @@ MonoBehaviour:
   SoundOffBtn: {fileID: 0}
   MusicOnBtn: {fileID: 0}
   MusicOffBtn: {fileID: 0}
+  Diamonds: {fileID: 2006968081}
 --- !u!1 &1640444581
 GameObject:
   m_ObjectHideFlags: 0

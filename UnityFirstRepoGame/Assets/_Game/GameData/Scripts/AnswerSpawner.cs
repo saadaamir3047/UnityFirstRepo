@@ -37,7 +37,7 @@ public class AnswerSpawner : MonoBehaviour
         QuestionManager.instance.BP = go.GetComponent<BaseParent>();
         GoQue.Enqueue(go);
         StepsCount++;
-        if(StepsCount == 2)
+        if(StepsCount == 4)
         {
             Transform newPos = t;
             for(int i=0; i<4; i++)
@@ -45,7 +45,7 @@ public class AnswerSpawner : MonoBehaviour
                 newPos = t.transform.GetChild(i).transform;
                 Dimo = Instantiate(Diamond, new Vector3(newPos.position.x, newPos.position.y, newPos.position.z - 2), Quaternion.identity);
             }
-            StepsCount = 0;
+            StepsCount = -1;
         }
     }
     public void delBox()

@@ -41,4 +41,20 @@ public class CartPannelUI : MonoBehaviour
 		Destroy(gameObject, 0.1f);
 	}
 
+	public void BuySkins(int index)
+    {
+		//Skin Bought 0 means not bought and 1 means the skin is bought
+        if (PlayerPrefs.GetInt("totalDiamonds", 100) >= 100 && PlayerPrefs.GetInt("skinBought", 0) == 0)
+        {
+			PlayerPrefs.SetInt("skinBought", 1);
+			PlayerPrefs.SetInt("totalDiamonds", PlayerPrefs.GetInt("totalDiamonds", 100) - 100);
+		}
+
+		if(PlayerPrefs.GetInt("skinBought", 0) == 1)
+        {
+			PlayerPrefs.SetInt("skinEquiped", index);
+        }
+		OnBackPressed();
+    }
+
 }

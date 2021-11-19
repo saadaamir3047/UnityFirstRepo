@@ -62,7 +62,7 @@ public class QuestionManager : MonoBehaviour
         if (! bj.isDead)
         {
             slider.GetComponent<Slider>().value += Time.deltaTime;
-            if (slider.GetComponent<Slider>().value >= 10)
+            if (slider.GetComponent<Slider>().value >= time)
             {
                 GameOverPannelUI.ShowUI();
                 gm.bj.isDead = true;

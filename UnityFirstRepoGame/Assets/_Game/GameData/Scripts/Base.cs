@@ -53,6 +53,7 @@ public class Base : MonoBehaviour
         bj.MoveTo();
             if (!bj.isDead && wrightAns)
             {
+                bj.theCorrectAnswer = true;
                 gm.score++;
                 bj.MoveTo();
                 AnswerSpawner.instance.newAns(transform.parent);
@@ -61,7 +62,7 @@ public class Base : MonoBehaviour
                 AnswerSpawner.instance.delBox();
 
                 //QM.count++;
-                QM.slider.GetComponent<Slider>().value = 0;
+                //QM.slider.GetComponent<Slider>().value = 0;
                 //print(QM.count);
                 if (gm.all)
                 {

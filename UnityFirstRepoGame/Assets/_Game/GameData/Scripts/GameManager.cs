@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public int HighScore;
     public Text highScoreText;
+    public int DiamondsNumber;
+    public Text Diamonds;
 
 
     // Start is called before the first frame update
@@ -70,6 +72,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: " + score;
         if (PlayerPrefs.GetInt("HighScore", 0) < score)
             PlayerPrefs.SetInt("HighScore", score);
+        Diamonds.text = PlayerPrefs.GetInt("totalDiamonds", 100) + "";
     }
 
     public void retry()

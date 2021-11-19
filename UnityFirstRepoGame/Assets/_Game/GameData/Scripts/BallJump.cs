@@ -19,11 +19,16 @@ public class BallJump : MonoBehaviour
     public Vector3 targetPosition;
     public AudioSource jump;
     public AudioSource bad;
+    public int skinIndex;
+    public bool movementPermission = false;
 
     public GameObject splashParticleEffect;
+    public Color[] ParticleColors;
+    public bool theCorrectAnswer = false;
     // Start is called before the first frame update
     void Start()
     {
+        enableTheSkin();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -32,12 +37,9 @@ public class BallJump : MonoBehaviour
     {
         if ((IsGrounded)&&(!isDead))
         {
-
             rb.velocity = Vector3.up * velocity;
             //IsBallMovingUP = true;
-
         }
-       
     }
     private void Update()
     {if (Input.GetKeyDown(KeyCode.Space))
@@ -71,9 +73,11 @@ public class BallJump : MonoBehaviour
         if ((collision.gameObject.tag == "ground") && (!isDead))
         {
             IsGrounded = true;
-            Instantiate(splashParticleEffect, transform.position, Quaternion.identity);
+            GameObject temp =  Instantiate(splashParticleEffect, transform.position, Quaternion.identity);
             //anim.SetBool("IsGrounded", true);
             //anim.SetBool("Jump", true);
+            var temp2 =  temp.GetComponent<ParticleSystem>().main;
+            temp2.startColor = ParticleColors[PlayerPrefs.GetInt("skinEquiped", 0)];
 
         }
     }
@@ -85,7 +89,10 @@ public class BallJump : MonoBehaviour
             jump.Play();
             //anim.SetBool("IsGrounded", false);
             //anim.SetBool("Jump", false);
-
+            if (theCorrectAnswer) { 
+                movementPermission = true;
+                theCorrectAnswer = false;
+            }
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -97,10 +104,11 @@ public class BallJump : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.tag == "Diamond")
+        if(other.gameObject.tag == "Diamond" && !isDead)
         {
             Destroy(other.gameObject);
             SoundManager.instance.allEffects[4].Play();
+            PlayerPrefs.SetInt("totalDiamonds", PlayerPrefs.GetInt("totalDiamonds", 100)+1);
         }
 
 
@@ -138,20 +146,26 @@ public class BallJump : MonoBehaviour
         while (0.1f<Mathf.Abs(Vector2.Distance(player2dpos, targetpos)))
         {
             yield return new WaitForEndOfFrame();
-            if (IsBallMovingUP || isDead)
+            if (movementPermission || isDead)
             {
-
-
+                   
                 player2dpos = new Vector2(transform.position.x, transform.position.z);               
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, 1f);
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, 0.1f);
             }
             
         }
-       
+        movementPermission = false;
     }
 
     public void MoveTo()
     {
         StartCoroutine(waitmove());
+    }
+
+    public void enableTheSkin()
+    {
+        skinIndex = PlayerPrefs.GetInt("skinEquiped", 0);
+        transform.GetChild(0).transform.GetChild(skinIndex).gameObject.SetActive(true);
+
     }
 }

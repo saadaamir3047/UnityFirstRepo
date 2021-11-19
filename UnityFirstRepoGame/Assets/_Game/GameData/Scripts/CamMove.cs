@@ -26,12 +26,12 @@ public class CamMove : MonoBehaviour
         targetPosition =new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z - 2f);
 
         yield return new WaitForEndOfFrame();
-        while (0.3f < Mathf.Abs(Vector3.Distance(Campos, targetPosition)))
+        while (0.05f < Mathf.Abs(Vector3.Distance(Campos, targetPosition)))
         {
             
             yield return new WaitForEndOfFrame();            
                 Campos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-                transform.position = Vector3.MoveTowards(Campos, targetPosition, 0.3f);
+                transform.position = Vector3.MoveTowards(Campos, targetPosition, 0.05f);
         }
     }
 }
