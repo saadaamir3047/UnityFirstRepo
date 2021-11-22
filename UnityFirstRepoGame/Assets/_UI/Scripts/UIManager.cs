@@ -26,7 +26,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Diamonds.text = PlayerPrefs.GetInt("totalDiamonds", 100) + "";
+        Diamonds.text = PlayerPrefs.GetInt("totalDiamonds", 200) + "";
     }
 
     public void openSettingsPannel()

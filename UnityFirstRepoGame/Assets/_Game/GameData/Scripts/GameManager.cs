@@ -79,12 +79,19 @@ public class GameManager : MonoBehaviour
     {
         SoundManager.instance.playBtnClickSound();
         SceneManager.LoadScene("SampleScene");
+        //StartCoroutine(waitForRetryPannel());
         retrypanel.SetActive(false);
     }
 
     public void gameover()
     {
-        bj.isDead = true;
+        //bj.isDead = true;
+        retrypanel.SetActive(true);
+        //StartCoroutine(waitForRetryPannel());
+    }
+    IEnumerator waitForRetryPannel()
+    {
+        yield return new WaitForSeconds(2f);
         retrypanel.SetActive(true);
     }
 

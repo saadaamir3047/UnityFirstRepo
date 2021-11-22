@@ -44,26 +44,33 @@ public class Base : MonoBehaviour
 
     }
 
+    IEnumerator wait2Sec()
+    {
+        yield return new WaitForSeconds(2f);
+        bj.movementPermission = false;
+        bj.movementPermission2 = false;
+     }
+
     private void OnMouseDown()
     {
         if (canJump)
         {
-        AS.DisableJump();
-        bj.targetPosition =new Vector3(transform.position.x , bj.transform.position.y , transform.position.z);
-        bj.MoveTo();
+            AS.DisableJump();
+            WaitPanelUI.ShowUI();
+            bj.theCorrectAnswer = true;
+            bj.movementPermission = true;
+            StartCoroutine(wait2Sec());
+            bj.targetPosition = new Vector3(transform.position.x, bj.transform.position.y, transform.position.z);
+            bj.MoveTo();
             if (!bj.isDead && wrightAns)
             {
-                bj.theCorrectAnswer = true;
+
                 gm.score++;
-                bj.MoveTo();
                 AnswerSpawner.instance.newAns(transform.parent);
                 cm.NewPos();
 
                 AnswerSpawner.instance.delBox();
 
-                //QM.count++;
-                //QM.slider.GetComponent<Slider>().value = 0;
-                //print(QM.count);
                 if (gm.all)
                 {
                     QM.nextAns();
@@ -88,20 +95,30 @@ public class Base : MonoBehaviour
 
                 }
                 gameObject.GetComponent<Renderer>().material.color = Color.blue;
-                if(SoundManager.instance.canPlaySound)
+                if (SoundManager.instance.canPlaySound)
                     good.Play();
             }
-        
-            if (wrightAns !=true)
+
+            if (wrightAns != true)
             {
-                bj.MoveTo();
                 gameObject.GetComponent<Renderer>().material.color = Color.red;
-                bj.isDead = true;
-                GameOverPannelUI.ShowUI();
-                //retrypanel.SetActive(true);
-                //bj.anim.SetBool("Dead", true);
+                //bj.isDead = true;
+                StartCoroutine(waitAndDie());
+                StartCoroutine(waitForRetryPannel());
             }
         }
     }
+    IEnumerator waitForRetryPannel()
+    {
+        yield return new WaitForSeconds(2f);
+        GameOverPannelUI.ShowUI();
+    }
+
+    IEnumerator waitAndDie()
+    {
+        yield return new WaitForSeconds(1f);
+        bj.isDead = true;
+    }
+
 }
 

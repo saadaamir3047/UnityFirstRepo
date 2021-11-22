@@ -21,6 +21,7 @@ public class BallJump : MonoBehaviour
     public AudioSource bad;
     public int skinIndex;
     public bool movementPermission = false;
+    public bool movementPermission2 = false;
 
     public GameObject splashParticleEffect;
     public Color[] ParticleColors;
@@ -38,27 +39,38 @@ public class BallJump : MonoBehaviour
         if ((IsGrounded)&&(!isDead))
         {
             rb.velocity = Vector3.up * velocity;
-            //IsBallMovingUP = true;
         }
     }
-    private void Update()
-    {if (Input.GetKeyDown(KeyCode.Space))
+
+    IEnumerator delay3micsec()
+    {
+        yield return new WaitForSeconds(0.3f);
+        if (movementPermission)
         {
-            isDead = true;
-            anim.SetBool("Dead", true);
+            movementPermission2 = true;
+        }
+        else
+        {
+            movementPermission2 = false;
 
         }
+    }
+
+    private void Update()
+    {
 
         if ((oldPos < transform.position.y) && (!isDead))
         {
             IsBallMovingUP = true;
-            //anim.SetBool("IsBallMovingUP", false);
+            if (movementPermission)
+            {
+                StartCoroutine(delay3micsec());
+            }
         }
 
         if ((oldPos > transform.position.y) && (!isDead))
         {
             IsBallMovingUP = false;
-            //anim.SetBool("IsBallMovingUP", true);
 
         }
 
@@ -74,8 +86,6 @@ public class BallJump : MonoBehaviour
         {
             IsGrounded = true;
             GameObject temp =  Instantiate(splashParticleEffect, transform.position, Quaternion.identity);
-            //anim.SetBool("IsGrounded", true);
-            //anim.SetBool("Jump", true);
             var temp2 =  temp.GetComponent<ParticleSystem>().main;
             temp2.startColor = ParticleColors[PlayerPrefs.GetInt("skinEquiped", 0)];
 
@@ -87,10 +97,7 @@ public class BallJump : MonoBehaviour
         {
             IsGrounded = false;
             jump.Play();
-            //anim.SetBool("IsGrounded", false);
-            //anim.SetBool("Jump", false);
             if (theCorrectAnswer) { 
-                movementPermission = true;
                 theCorrectAnswer = false;
             }
         }
@@ -115,24 +122,16 @@ public class BallJump : MonoBehaviour
         if (isDead && other.gameObject.tag == "ground")
         {
             anim.SetBool("Dead", true);
-
-
-
         }
         if ((other.gameObject.tag == "ground") && (!isDead))
         {
-            
-            //anim.SetBool("IsGrounded", true);
             anim.SetBool("Jump", true);
-
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if ((other.gameObject.tag == "ground") && (!isDead))
         {
-
-            //anim.SetBool("IsGrounded", false);
             anim.SetBool("Jump", false);
         }
     }
@@ -146,17 +145,15 @@ public class BallJump : MonoBehaviour
         while (0.1f<Mathf.Abs(Vector2.Distance(player2dpos, targetpos)))
         {
             yield return new WaitForEndOfFrame();
-            if (movementPermission || isDead)
+            if ((movementPermission && movementPermission2)) //|| isDead)
             {
-                   
-                player2dpos = new Vector2(transform.position.x, transform.position.z);               
+                
+                player2dpos = new Vector2(transform.position.x, transform.position.z);
+                targetPosition = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, 0.1f);
             }
-            
         }
-        movementPermission = false;
     }
-
     public void MoveTo()
     {
         StartCoroutine(waitmove());
