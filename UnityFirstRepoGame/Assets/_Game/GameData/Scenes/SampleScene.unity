@@ -1183,6 +1183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 17
+  MovementSpeed: 0.3
   IsBallMovingUP: 0
   IsGrounded: 0
   oldPos: 0
@@ -1216,6 +1217,7 @@ MonoBehaviour:
   - {r: 1, g: 0.90196085, b: 0.37254903, a: 1}
   - {r: 1, g: 0.90196085, b: 0.37254903, a: 1}
   theCorrectAnswer: 0
+  deadOneTime: 0
 --- !u!135 &786326897
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3605,6 +3607,18 @@ PrefabInstance:
     - target: {fileID: 4228580854721539375, guid: d4935b13df8430d4bbc39449e06e97d4, type: 3}
       propertyPath: m_Name
       value: SoundManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228580855627101610, guid: d4935b13df8430d4bbc39449e06e97d4, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228580855627101610, guid: d4935b13df8430d4bbc39449e06e97d4, type: 3}
+      propertyPath: Priority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228580855627101610, guid: d4935b13df8430d4bbc39449e06e97d4, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4935b13df8430d4bbc39449e06e97d4, type: 3}

@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        PlayerPrefs.SetInt("totalDiamonds", 1000);
     }
 
     // Update is called once per frame
@@ -50,29 +50,33 @@ public class UIManager : MonoBehaviour
     public void AdditionAndSubtraction()
     {
         SoundManager.instance.playBtnClickSound();
-        PlayerPrefs.SetInt("gameType", 1);
-        SceneManager.LoadScene("SampleScene");
+        AdditionsPannel.ShowUI();
+        //PlayerPrefs.SetInt("gameType", 1);
+        //SceneManager.LoadScene("SampleScene");
     }
 
     public void MultiplicationAndDivision()
     {
         SoundManager.instance.playBtnClickSound();
-        PlayerPrefs.SetInt("gameType", 2);
-        SceneManager.LoadScene("SampleScene");
+        MulDivPannel.ShowUI();
+        //PlayerPrefs.SetInt("gameType", 2);
+        //SceneManager.LoadScene("SampleScene");
     }
 
     public void Equations()
     {
         SoundManager.instance.playBtnClickSound();
-        PlayerPrefs.SetInt("gameType", 3);
-        SceneManager.LoadScene("SampleScene");
+        AljebricEquations.ShowUI();
+        //PlayerPrefs.SetInt("gameType", 3);
+        //SceneManager.LoadScene("SampleScene");
     }
 
     public void Conversions()
     {
         SoundManager.instance.playBtnClickSound();
-        PlayerPrefs.SetInt("gameType", 4);
-        SceneManager.LoadScene("SampleScene");
+        ConversionsPannel.ShowUI();
+        //PlayerPrefs.SetInt("gameType", 4);
+        //SceneManager.LoadScene("SampleScene");
     }
 
     public void GenerateRandomQuestions()   

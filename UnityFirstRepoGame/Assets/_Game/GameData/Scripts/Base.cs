@@ -19,7 +19,7 @@ public class Base : MonoBehaviour
     public AudioSource good;
     public AudioSource bad;
     public GameManager gm;
-
+    public Color myColor;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,7 +64,7 @@ public class Base : MonoBehaviour
             bj.MoveTo();
             if (!bj.isDead && wrightAns)
             {
-
+                StartCoroutine(waitForBlueColor());
                 gm.score++;
                 AnswerSpawner.instance.newAns(transform.parent);
                 cm.NewPos();
@@ -92,32 +92,120 @@ public class Base : MonoBehaviour
                 if (gm.plus)
                 {
                     QM.additionsubs();
-
                 }
-                gameObject.GetComponent<Renderer>().material.color = Color.blue;
+                if (gm.addEasy)
+                {
+                    QM.add2number1to10();
+                }
+                if (gm.addMedium)
+                {
+                    QM.add2numbert20to100();
+                }
+                if (gm.addHard)
+                {
+                    QM.add2numbert100to1000();
+                }
+                if (gm.SubEasy)
+                {
+                    QM.subs2number1to10();
+                }
+                if (gm.SubHard)
+                {
+                    QM.subs2numbert1to100();
+                }
+                if (gm.mulEasy)
+                {
+                    QM.multiplcation2number2to10();
+                }
+                if (gm.mulHard)
+                {
+                    QM.multiplcation2number2to10and10to20();
+                }
+                if (gm.divEasy)
+                {
+                    QM.division2to50();
+                }
+                if (gm.divHard)
+                {
+                    QM.division2to100();
+                }
+                if (gm.kg)
+                {
+                    QM.kgconversion();
+                }
+                if (gm.meter)
+                {
+                    QM.mconversion();
+                }
+                if (gm.metersq)
+                {
+                    QM.m2conversion();
+                }
+                if (gm.centiMeter)
+                {
+                    QM.cm3conversion();
+                }
+                if (gm.miliLiters)
+                {
+                    QM.mlconversion();
+                }
+                if (gm.dbms)
+                {
+                    QM.dmas();
+                }
+                if (gm.roots)
+                {
+                    QM.roots();
+                }
+                if (gm.simpleEq)
+                {
+                    QM.simpleequation();
+                }
                 if (SoundManager.instance.canPlaySound)
                     good.Play();
+                //gameObject.GetComponent<Renderer>().material.color = Color.blue;
             }
 
             if (wrightAns != true)
             {
-                gameObject.GetComponent<Renderer>().material.color = Color.red;
+                StartCoroutine(waitForRedColor());
+                //gameObject.GetComponent<Renderer>().material.color = Color.red;
                 //bj.isDead = true;
                 StartCoroutine(waitAndDie());
                 StartCoroutine(waitForRetryPannel());
             }
         }
     }
+
+    IEnumerator waitForBlueColor()
+    {
+        gameObject.GetComponent<Renderer>().material.color = Color.blue;
+        yield return new WaitForSeconds(0.2f);
+        gameObject.GetComponent<Renderer>().material.color = myColor;
+        yield return new WaitForSeconds(0.85f);
+        gameObject.GetComponent<Renderer>().material.color = Color.blue;
+    }
+
+    IEnumerator waitForRedColor()
+    {
+        gameObject.GetComponent<Renderer>().material.color = Color.blue;
+        yield return new WaitForSeconds(0.2f);
+        gameObject.GetComponent<Renderer>().material.color = myColor;
+        yield return new WaitForSeconds(0.85f);
+        gameObject.GetComponent<Renderer>().material.color = Color.red;
+    }
     IEnumerator waitForRetryPannel()
     {
+
         yield return new WaitForSeconds(2f);
         GameOverPannelUI.ShowUI();
     }
 
     IEnumerator waitAndDie()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         bj.isDead = true;
+   //     SoundManager.instance.playDeathSound();
     }
 
 }

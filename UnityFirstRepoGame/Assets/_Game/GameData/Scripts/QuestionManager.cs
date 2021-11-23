@@ -50,6 +50,74 @@ public class QuestionManager : MonoBehaviour
         {
             additionsubs();
         }
+        if (gm.addEasy)
+        {
+            add2number1to10();
+        }
+        if (gm.addMedium)
+        {
+            add2numbert20to100();
+        }
+        if (gm.addHard)
+        {
+            add2numbert100to1000();
+        }
+        if (gm.SubEasy)
+        {
+            subs2number1to10();
+        }
+        if (gm.SubHard)
+        {
+            subs2numbert1to100();
+        }
+        if (gm.mulEasy)
+        {
+            multiplcation2number2to10();
+        }
+        if (gm.mulHard)
+        {
+            multiplcation2number2to10and10to20();
+        }
+        if (gm.divEasy)
+        {
+            division2to50();
+        }
+        if (gm.divHard)
+        {
+            division2to100();
+        }
+        if (gm.kg)
+        {
+            kgconversion();
+        }
+        if (gm.meter)
+        {
+            mconversion();
+        }
+        if (gm.metersq)
+        {
+            m2conversion();
+        }
+        if (gm.centiMeter)
+        {
+            cm3conversion();
+        }
+        if (gm.miliLiters)
+        {
+            mlconversion();
+        }
+        if (gm.dbms)
+        {
+            dmas();
+        }
+        if (gm.roots)
+        {
+            roots();
+        }
+        if (gm.simpleEq)
+        {
+            simpleequation();
+        }
     }
     private void Awake()
     {

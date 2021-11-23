@@ -5,6 +5,7 @@ using UnityEngine;
 public class BallJump : MonoBehaviour
 {
     public float velocity = 13f;
+    public float MovementSpeed;
     private Rigidbody rb;
 
     public bool IsBallMovingUP = false;
@@ -26,11 +27,15 @@ public class BallJump : MonoBehaviour
     public GameObject splashParticleEffect;
     public Color[] ParticleColors;
     public bool theCorrectAnswer = false;
+
+    public bool deadOneTime = true;
+
     // Start is called before the first frame update
     void Start()
     {
         enableTheSkin();
         rb = GetComponent<Rigidbody>();
+        deadOneTime = true;
     }
 
     // Update is called once per frame
@@ -88,46 +93,57 @@ public class BallJump : MonoBehaviour
             GameObject temp =  Instantiate(splashParticleEffect, transform.position, Quaternion.identity);
             var temp2 =  temp.GetComponent<ParticleSystem>().main;
             temp2.startColor = ParticleColors[PlayerPrefs.GetInt("skinEquiped", 0)];
-
         }
     }
+
     private void OnCollisionExit(Collision collision)
     {
         if ((collision.gameObject.tag == "ground") && (!isDead))
         {
             IsGrounded = false;
             jump.Play();
-            if (theCorrectAnswer) { 
+            if (theCorrectAnswer)
+            {
                 theCorrectAnswer = false;
             }
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (isDead && other.gameObject.tag == "ground")
         {
-            bad.Play();
+            //bad.Play();
+            //SoundManager.instance.playDeathSound();
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
         if(other.gameObject.tag == "Diamond" && !isDead)
         {
-            Destroy(other.gameObject);
-            SoundManager.instance.allEffects[4].Play();
+            Destroy(other.gameObject);            
+                SoundManager.instance.allEffects[4].Play();
             PlayerPrefs.SetInt("totalDiamonds", PlayerPrefs.GetInt("totalDiamonds", 100)+1);
         }
 
 
         if (isDead && other.gameObject.tag == "ground")
         {
+            if (deadOneTime)
+            {
+                SoundManager.instance.playDeathSound();
+                print("Death Sound played!");
+            }
             anim.SetBool("Dead", true);
+            deadOneTime = false;
         }
         if ((other.gameObject.tag == "ground") && (!isDead))
         {
             anim.SetBool("Jump", true);
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if ((other.gameObject.tag == "ground") && (!isDead))
@@ -142,15 +158,15 @@ public class BallJump : MonoBehaviour
         Vector2 targetpos = new Vector2(targetPosition.x, targetPosition.z);
 
         yield return new WaitForEndOfFrame();
-        while (0.1f<Mathf.Abs(Vector2.Distance(player2dpos, targetpos)))
+        while (0.2f <Mathf.Abs(Vector2.Distance(player2dpos, targetpos)))
         {
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
             if ((movementPermission && movementPermission2)) //|| isDead)
             {
                 
                 player2dpos = new Vector2(transform.position.x, transform.position.z);
                 targetPosition = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, 0.1f);
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, MovementSpeed);
             }
         }
     }

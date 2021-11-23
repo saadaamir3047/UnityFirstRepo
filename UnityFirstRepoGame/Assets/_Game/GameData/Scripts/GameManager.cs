@@ -14,6 +14,28 @@ public class GameManager : MonoBehaviour
     public bool equation = false;
     public bool conversion = false;
     public bool all = false;
+    
+    public bool addEasy;
+    public bool addMedium;
+    public bool addHard;
+    public bool SubEasy;
+    public bool SubHard;
+
+    public bool mulEasy;
+    public bool mulHard;
+    public bool divEasy;
+    public bool divHard;
+
+    public bool kg;
+    public bool meter;
+    public bool metersq;
+    public bool centiMeter;
+    public bool miliLiters;
+
+    public bool dbms;
+    public bool roots;
+    public bool simpleEq;
+
 
     public int score;
     public Text scoreText;
@@ -29,6 +51,7 @@ public class GameManager : MonoBehaviour
     {
         checkType();
         score = 0;
+        Application.targetFrameRate = 30;
     }
 
     public void checkType()
@@ -38,6 +61,7 @@ public class GameManager : MonoBehaviour
         multiply = false;
         equation = false;
         conversion = false;
+
         if(PlayerPrefs.GetInt("gameType", 0) == 0)
         {
             Debug.LogError("No Type was selected");
@@ -63,6 +87,91 @@ public class GameManager : MonoBehaviour
         {
             //All Stands for Random Questions.
             all = true;
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 6)
+        {
+            addEasy = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 7)
+        {
+            addMedium = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 8)
+        {
+            addHard = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 9)
+        {
+            SubEasy = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 10)
+        {
+            SubHard = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 11)
+        {
+            mulEasy = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 12)
+        {
+            mulHard = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 13)
+        {
+            divEasy = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 14)
+        {
+            divHard = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 15)
+        {
+            kg = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 16)
+        {
+            meter = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 17)
+        {
+            metersq = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 18)
+        {
+            centiMeter = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 19)
+        {
+            miliLiters = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 20)
+        {
+            dbms = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 21)
+        {
+            roots = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 22)
+        {
+            simpleEq = true;
+            //All Stands for Random Questions.
         }
     }
 

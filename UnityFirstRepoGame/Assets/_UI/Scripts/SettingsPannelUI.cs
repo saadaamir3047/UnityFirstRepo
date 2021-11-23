@@ -61,7 +61,7 @@ public class SettingsPannelUI : MonoBehaviour
 	public void OnBackPressed()
 	{
 		SoundManager.instance.playBtnClickSound();
-		Time.timeScale = 1;
+		Time.timeScale = 1.5f;
 		//this.gameObject.GetComponent<Animator>().Play("panel Animations reverse");
 		//SoundManager.instance.Play_Button_Sound();
 		Destroy(gameObject, 0.2f);

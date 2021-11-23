@@ -48,7 +48,7 @@ public class GameOverPannelUI : MonoBehaviour
 	{
 		SoundManager.instance.playBtnClickSound();
 		SceneManager.LoadScene("MenuScene");
-		Time.timeScale = 1;
+		Time.timeScale = 1.5f;
 	}
 	public void retry()
 	{

@@ -34,8 +34,8 @@ public class WaitPanelUI : MonoBehaviour
 
 	public void OnBackPressed()
 	{
-		SoundManager.instance.playBtnClickSound();
-		Time.timeScale = 1;
+		
+		Time.timeScale = 1.5f;
 		Destroy(gameObject, 0.2f);
 	}
 

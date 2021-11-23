@@ -11,9 +11,14 @@ public class SoundManager : MonoBehaviour
 
     public static SoundManager instance;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         instance = this;
+    }
+
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame
@@ -45,6 +50,13 @@ public class SoundManager : MonoBehaviour
     {
         allEffects[1].Play();
     }
+
+    public void playDeathSound()
+    {
+        allEffects[3].Play();
+    }
+
+
     public void disableMusic()
     {
         bgMusic.Stop();

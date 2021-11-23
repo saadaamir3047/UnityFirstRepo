@@ -630,3 +630,5 @@ MonoBehaviour:
   retrypanel: {fileID: 0}
   good: {fileID: 3678632946314648125}
   bad: {fileID: 5978706972416552776}
+  gm: {fileID: 0}
+  myColor: {r: 0.57254905, g: 0.81568635, b: 0.3137255, a: 1}
