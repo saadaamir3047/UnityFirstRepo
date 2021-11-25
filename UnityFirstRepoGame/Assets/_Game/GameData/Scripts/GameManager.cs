@@ -36,6 +36,15 @@ public class GameManager : MonoBehaviour
     public bool roots;
     public bool simpleEq;
 
+    public bool fractionToDecimal;
+    public bool DecimalToFraction;
+    public bool DecimalOrFractionBoth;
+    
+    public bool TwoDices;
+    public bool ThreeDices;
+    public bool MixDices;
+
+
 
     public int score;
     public Text scoreText;
@@ -171,6 +180,36 @@ public class GameManager : MonoBehaviour
         else if (PlayerPrefs.GetInt("gameType", 0) == 22)
         {
             simpleEq = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 23)
+        {
+            fractionToDecimal = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 24)
+        {
+            DecimalToFraction = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 25)
+        {
+            DecimalOrFractionBoth = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 26)
+        {
+            TwoDices = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 27)
+        {
+            ThreeDices = true;
+            //All Stands for Random Questions.
+        }
+        else if (PlayerPrefs.GetInt("gameType", 0) == 28)
+        {
+            MixDices = true;
             //All Stands for Random Questions.
         }
     }

@@ -6,10 +6,17 @@ public class CamMove : MonoBehaviour
 {
     public Vector3 targetPosition;
     public Vector3 Campos;
+    public BallJump bj;
     // Start is called before the first frame update
+
+
     void Start()
     {
         
+    }
+    private void Awake()
+    {
+        bj = GameObject.Find("Ball").GetComponent<BallJump>();
     }
 
     // Update is called once per frame
@@ -17,10 +24,12 @@ public class CamMove : MonoBehaviour
     {
         
     }
+
     public void NewPos()
     {
         StartCoroutine(cammove());
     }
+
     IEnumerator cammove()
     {
         targetPosition =new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z - 2f);
@@ -30,8 +39,10 @@ public class CamMove : MonoBehaviour
         {
             
             yield return new WaitForEndOfFrame();            
-                Campos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-                transform.position = Vector3.MoveTowards(Campos, targetPosition, 0.05f);
+            Campos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            transform.position = Vector3.MoveTowards(Campos, targetPosition, 0.05f);
+            //bj.movementPermission2 = true;
+            bj.movementPermission = true;
         }
     }
 }

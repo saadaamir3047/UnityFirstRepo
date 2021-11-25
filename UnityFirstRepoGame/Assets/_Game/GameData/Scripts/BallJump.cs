@@ -5,6 +5,11 @@ using UnityEngine;
 public class BallJump : MonoBehaviour
 {
     public float velocity = 13f;
+    float maxVelocity = 30f;
+    float minVelocity = 17f;
+    public float timeThreshHold;
+    public float increaseVelocity = 0;
+
     public float MovementSpeed;
     private Rigidbody rb;
 
@@ -43,6 +48,10 @@ public class BallJump : MonoBehaviour
     {
         if ((IsGrounded)&&(!isDead))
         {
+            if(velocity > maxVelocity)
+            {
+                velocity = maxVelocity;
+            }
             rb.velocity = Vector3.up * velocity;
         }
     }
@@ -57,13 +66,11 @@ public class BallJump : MonoBehaviour
         else
         {
             movementPermission2 = false;
-
         }
     }
 
     private void Update()
     {
-
         if ((oldPos < transform.position.y) && (!isDead))
         {
             IsBallMovingUP = true;
@@ -76,13 +83,8 @@ public class BallJump : MonoBehaviour
         if ((oldPos > transform.position.y) && (!isDead))
         {
             IsBallMovingUP = false;
-
         }
-
         oldPos = transform.position.y;
-
-
-        
     }
 
     private void OnCollisionStay(Collision collision)
@@ -123,10 +125,9 @@ public class BallJump : MonoBehaviour
         if(other.gameObject.tag == "Diamond" && !isDead)
         {
             Destroy(other.gameObject);            
-                SoundManager.instance.allEffects[4].Play();
+            SoundManager.instance.allEffects[4].Play();
             PlayerPrefs.SetInt("totalDiamonds", PlayerPrefs.GetInt("totalDiamonds", 100)+1);
         }
-
 
         if (isDead && other.gameObject.tag == "ground")
         {
@@ -136,6 +137,7 @@ public class BallJump : MonoBehaviour
                 print("Death Sound played!");
             }
             anim.SetBool("Dead", true);
+            SoundManager.instance.bgMusic.Stop();
             deadOneTime = false;
         }
         if ((other.gameObject.tag == "ground") && (!isDead))
@@ -158,18 +160,18 @@ public class BallJump : MonoBehaviour
         Vector2 targetpos = new Vector2(targetPosition.x, targetPosition.z);
 
         yield return new WaitForEndOfFrame();
-        while (0.2f <Mathf.Abs(Vector2.Distance(player2dpos, targetpos)))
+        while (0.1f < Mathf.Abs(Vector2.Distance(player2dpos, targetpos)))
         {
             yield return new WaitForFixedUpdate();
             if ((movementPermission && movementPermission2)) //|| isDead)
             {
-                
                 player2dpos = new Vector2(transform.position.x, transform.position.z);
                 targetPosition = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, MovementSpeed);
             }
         }
     }
+
     public void MoveTo()
     {
         StartCoroutine(waitmove());
@@ -179,6 +181,5 @@ public class BallJump : MonoBehaviour
     {
         skinIndex = PlayerPrefs.GetInt("skinEquiped", 0);
         transform.GetChild(0).transform.GetChild(skinIndex).gameObject.SetActive(true);
-
     }
 }

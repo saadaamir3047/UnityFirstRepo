@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class QuestionManager : MonoBehaviour
 {
     public static QuestionManager instance;
@@ -19,15 +20,22 @@ public class QuestionManager : MonoBehaviour
     public float x;
     public float y;
     public float z;
+    public string decimalAns1;
+    public string decimalAns2;
+    public string decimalAns3;
+    public string decimalAns4;
+    public string decimalQuestion;
+
     public float ans;
+    public int velocityToIncrease;
 
     public GameObject slider;
+    public GameObject slider2;
 
     public string question;
     //Start is called before the first frame update
     void Start()
     {
-
         //add2number1to10();
         if (gm.all)
         {
@@ -53,10 +61,12 @@ public class QuestionManager : MonoBehaviour
         if (gm.addEasy)
         {
             add2number1to10();
+            //DecToFraction();
         }
         if (gm.addMedium)
         {
             add2numbert20to100();
+            //FractionToDec();
         }
         if (gm.addHard)
         {
@@ -118,23 +128,56 @@ public class QuestionManager : MonoBehaviour
         {
             simpleequation();
         }
+        if (gm.DecimalToFraction)
+        {
+            DecToFraction();
+        }
+        if (gm.fractionToDecimal)
+        {
+            FractionToDec();
+        }
+        if (gm.DecimalOrFractionBoth)
+        {
+            DecimalFractionBoth();
+        }
+        if (gm.TwoDices)
+        {
+            DiceTwo();
+        }
+        if (gm.ThreeDices)
+        {
+            DiceThree();
+        }
+        if (gm.MixDices)
+        {
+            MixDices();
+        }
     }
     private void Awake()
     {
         instance = this;
 
     }
+
+    public float TimeToAnswer = 0;
     // Update is called once per frame
     void Update()
     {
         if (! bj.isDead)
         {
             slider.GetComponent<Slider>().value += Time.deltaTime;
+            slider2.GetComponent<Slider>().value -= Time.deltaTime;
+            TimeToAnswer += Time.deltaTime;
             if (slider.GetComponent<Slider>().value >= time)
             {
                 GameOverPannelUI.ShowUI();
                 gm.bj.isDead = true;
                 //gm.gameover();
+            }
+            if(slider2.GetComponent<Slider>().value <= 0)
+            {
+                slider2.SetActive(false);
+                bj.velocity = 17f;
             }
         }
     }
@@ -1135,9 +1178,9 @@ public class QuestionManager : MonoBehaviour
                 y = ans * 100;
                 w = ans / 10;
                 break;
-
         }
     }
+
     public void dmas()
     {
         int a;
@@ -1214,6 +1257,7 @@ public class QuestionManager : MonoBehaviour
                 ans = a - (c * c);
                 break;
         }
+
         text.text = question;
         switch (m)
         {
@@ -1252,7 +1296,6 @@ public class QuestionManager : MonoBehaviour
                 y = ans - 2;
                 w = ans + 5;
                 break;
-
         }
     }
     public void roots()
@@ -1481,5 +1524,333 @@ public class QuestionManager : MonoBehaviour
                 break;
         }
     }
-   
+
+    public void FractionToDec()
+    {
+        int a;
+        int b;
+        int n;
+        int count = 0;
+
+        a = Random.Range(1, 10);
+        b = Random.Range(1, 10);
+        n = Random.Range(1, 5);
+
+        question = a.ToString() + "/" + b.ToString();
+
+        text.text = question;
+
+        ans = (float) a / b;
+        ans = Mathf.Round(ans * 100f) / 100f;
+        //ans = Mathf.Round(ans);
+        //ans.ToString("F2");
+        switch (n)
+        {
+            case 1:
+                print("case 1");
+                w = ans;
+                BP.setBoxw();
+                x = ans + 0.2f;
+                y = ans - 0.2f;
+                z = ans + 0.5f;
+                break;
+            case 2:
+                print("case 2");
+
+                x = ans;
+                BP.setBoxx();
+                w = ans + 0.2f;
+                y = ans - 0.2f;
+                z = ans + 0.5f;
+                break;
+            case 3:
+                print("case 3");
+
+                y = ans;
+                BP.setBoxy();
+                x = ans + 0.2f;
+                w = ans - 0.2f;
+                z = ans + 0.5f;
+                break;
+            case 4:
+                print("case 4");
+                z = ans;
+                BP.setBoxz();
+                x = ans + 0.2f;
+                y = ans - 0.2f;
+                w = ans + 0.5f;
+                break;
+        }
+    }
+
+    public void DecToFraction()
+    {
+        int a;
+        int b;
+        int n;
+        int count = 0;
+
+        a = Random.Range(1, 10);
+        b = Random.Range(1, 10);
+        n = Random.Range(1, 5);
+
+        question = a.ToString() + "/" + b.ToString();
+
+        float temp;
+        temp = (float)a / b;
+        temp = Mathf.Round(temp * 100f) / 100f;
+        question = temp.ToString();
+        
+        text.text = question;
+        Debug.Log("Question is :" + question);
+        Debug.Log("Num 1: " + a + "Num 2: " + b);
+        //ans = Mathf.Round(ans);
+        //ans.ToString("F2");
+        switch (n)
+        {
+            case 1:
+                print("case 1");
+                w = ans;
+                decimalAns1 = a + "/" + b;
+                decimalAns2 = a+2 + "/" + b;
+                decimalAns3 = a + "/" + b+2;
+                decimalAns4 = a+3 + "/" + b+1;
+                BP.setBoxw();
+                x = ans + 0.2f;
+                
+                y = ans - 0.2f;
+                z = ans + 0.5f;
+                break;
+            case 2:
+                print("case 2");
+
+                x = ans;
+                decimalAns2 = a + "/" + b;
+                decimalAns1 = a+2 + "/" + b;
+                decimalAns3 = a + "/" + b+3;
+                decimalAns4 = a+1 + "/" + b;
+                BP.setBoxx();
+                w = ans + 0.2f;
+                y = ans - 0.2f;
+                z = ans + 0.5f;
+                break;
+            case 3:
+                print("case 3");
+                y = ans;
+                decimalAns3 = a + "/" + b;
+                decimalAns1 = a+1 + "/" + b+2;
+                decimalAns2 = a + "/" + b+3;
+                decimalAns4 = a+2 + "/" + b;
+                BP.setBoxy();
+                x = ans + 0.2f;
+                w = ans - 0.2f;
+                z = ans + 0.5f;
+                break;
+            case 4:
+                decimalAns4 = a + "/" + b;
+                decimalAns1 = a+3 + "/" + b+1;
+                decimalAns2 = a+5 + "/" + b;
+                decimalAns3 = a+1 + "/" + b+1;
+                print("case 4");
+                z = ans;
+                BP.setBoxz();
+                x = ans + 0.2f;
+                y = ans - 0.2f;
+                w = ans + 0.5f;
+                break;
+        }
+    }
+
+    public void DecimalFractionBoth()
+    {
+        int count;
+        count = Random.Range(1, 3);
+        switch (count)
+        {
+            case 1:
+                FractionToDec();
+                break;
+            case 2:
+                DecToFraction();
+                break;
+        }
+    }
+
+    public void MixDices()
+    {
+        int count;
+        count = Random.Range(1, 3);
+        switch (count)
+        {
+            case 1:
+                DiceTwo();
+                break;
+            case 2:
+                DiceThree();
+                break;
+        }
+    }
+
+    public void DiceTwo()
+    {
+        int a;
+        int b;
+        int n;
+
+
+        a = Random.Range(1, 7);
+        b = Random.Range(1, 7);
+        n = Random.Range(1, 5);
+
+        question = a.ToString() + "+" + b.ToString();
+
+        text.text = question;
+        ans = a + b;
+
+        switch (n)
+        {
+            case 1:
+                print("case 1");
+                w = ans;
+                BP.setBoxw();
+                
+                do
+                {
+                    x = ans + 2;
+                } while ((x < 1 && x > 12));
+                
+                do
+                {
+                    y = ans - 2;
+                } while ((y < 1 && y > 12));
+
+                do
+                {
+                    z = ans + 5;
+                } while ((z < 1 && z > 12));
+
+                break;
+            case 2:
+                print("case 2");
+
+                x = ans;
+                BP.setBoxx();
+                
+                do { w = ans + 2;  } while ((w < 1 && w > 12));
+
+                do { y = ans - 2; } while ((y < 1 && y > 12));
+                
+                do { z = ans + 5; } while ((z < 1 && z > 12));
+                break;
+            case 3:
+                print("case 3");
+
+                y = ans;
+                BP.setBoxy();
+                do { x = ans + 2; } while ((x < 1 && x > 12));
+                
+                do { w = ans - 2;  } while ((w < 1 && w > 12));
+                
+                do { z = ans + 5;  } while ((z < 1 && z > 12));
+                break;
+            case 4:
+                print("case 4");
+
+                z = ans;
+                BP.setBoxz();
+                x = ans + 2;
+                do { } while ((x < 1 && x > 12));
+
+                y = ans - 2;
+                do { } while ((y < 1 && y > 12));
+
+                w = ans + 5;
+                do { } while ((w < 1 && w > 12));
+
+                break;
+        }
+    }
+
+    public void DiceThree()
+    {
+        int a;
+        int b;
+        int c;
+        int n;
+
+
+        a = Random.Range(1, 7);
+        b = Random.Range(1, 7);
+        c = Random.Range(1, 7);
+        n = Random.Range(1, 5);
+
+        question = a.ToString() + "+" + b.ToString() + "+" + c.ToString();
+
+        text.text = question;
+        ans = a + b + c;
+
+        switch (n)
+        {
+            case 1:
+                print("case 1");
+                w = ans;
+                BP.setBoxw();
+
+                do
+                {
+                    x = ans + 2;
+                } while ((x < 1 && x > 18));
+
+                do
+                {
+                    y = ans - 2;
+                } while ((y < 1 && y > 18));
+
+                do
+                {
+                    z = ans + 5;
+                } while ((z < 1 && z > 18));
+
+                break;
+            case 2:
+                print("case 2");
+
+                x = ans;
+                BP.setBoxx();
+
+                do { w = ans + 2; } while ((w < 1 && w > 18));
+
+                do { y = ans - 2; } while ((y < 1 && y > 18));
+
+                do { z = ans + 5; } while ((z < 1 && z > 18));
+                break;
+            case 3:
+                print("case 3");
+
+                y = ans;
+                BP.setBoxy();
+                do { x = ans + 2; } while ((x < 1 && x > 18));
+
+                do { w = ans - 2; } while ((w < 1 && w > 18));
+
+                do { z = ans + 5; } while ((z < 1 && z > 18));
+                break;
+            case 4:
+                print("case 4");
+
+                z = ans;
+                BP.setBoxz();
+                
+                do { x = ans + 2; } while ((x < 1 && x > 18));
+
+                y = ans - 2;
+                do { y = ans - 2; } while ((y < 1 && y > 18));
+
+                w = ans + 5;
+                do { w = ans + 5; } while ((w < 1 && w > 18));
+                break;
+        }
+    }
+
+
 }

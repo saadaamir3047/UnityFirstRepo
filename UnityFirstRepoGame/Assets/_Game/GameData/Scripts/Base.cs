@@ -55,6 +55,7 @@ public class Base : MonoBehaviour
     {
         if (canJump)
         {
+            
             AS.DisableJump();
             WaitPanelUI.ShowUI();
             bj.theCorrectAnswer = true;
@@ -64,6 +65,22 @@ public class Base : MonoBehaviour
             bj.MoveTo();
             if (!bj.isDead && wrightAns)
             {
+                QM.slider2.SetActive(true);
+                Debug.Log("You Answered in" + QM.TimeToAnswer);
+                QM.slider2.GetComponent<Slider>().value = bj.timeThreshHold;
+                if (QM.TimeToAnswer < bj.timeThreshHold)
+                {
+                    bj.increaseVelocity += 2.0f;
+                    bj.velocity += bj.increaseVelocity;
+                }
+                else if(QM.TimeToAnswer > bj.timeThreshHold)
+                {
+                    bj.velocity = 17.0f;
+                }
+                QM.TimeToAnswer = 0f;
+
+
+
                 StartCoroutine(waitForBlueColor());
                 gm.score++;
                 AnswerSpawner.instance.newAns(transform.parent);
@@ -96,10 +113,12 @@ public class Base : MonoBehaviour
                 if (gm.addEasy)
                 {
                     QM.add2number1to10();
+                    //QM.DecToFraction();
                 }
                 if (gm.addMedium)
                 {
                     QM.add2numbert20to100();
+                    //QM.FractionToDec();
                 }
                 if (gm.addHard)
                 {
@@ -160,6 +179,30 @@ public class Base : MonoBehaviour
                 if (gm.simpleEq)
                 {
                     QM.simpleequation();
+                }
+                if (gm.fractionToDecimal)
+                {
+                    QM.FractionToDec();
+                }
+                if (gm.DecimalToFraction)
+                {
+                    QM.DecToFraction();
+                }
+                if (gm.DecimalOrFractionBoth)
+                {
+                    QM.DecimalFractionBoth();
+                }
+                if (gm.TwoDices)
+                {
+                    QM.DiceTwo();
+                }
+                if (gm.ThreeDices)
+                {
+                    QM.DiceThree();
+                }
+                if (gm.MixDices)
+                {
+                    QM.MixDices();
                 }
                 if (SoundManager.instance.canPlaySound)
                     good.Play();

@@ -79,6 +79,22 @@ public class UIManager : MonoBehaviour
         //SceneManager.LoadScene("SampleScene");
     }
 
+    public void DecimalOrFractionsPannel()
+    {
+        SoundManager.instance.playBtnClickSound();
+        DecToFracPannel.ShowUI();
+        //PlayerPrefs.SetInt("gameType", 4);
+        //SceneManager.LoadScene("SampleScene");
+    }
+    
+    public void DiceAddPannels()
+    {
+        SoundManager.instance.playBtnClickSound();
+        DiceAddPannel.ShowUI();
+        //PlayerPrefs.SetInt("gameType", 4);
+        //SceneManager.LoadScene("SampleScene");
+    }
+
     public void GenerateRandomQuestions()   
     {
         SoundManager.instance.playBtnClickSound();
