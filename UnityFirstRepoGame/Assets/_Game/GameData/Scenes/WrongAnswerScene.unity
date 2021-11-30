@@ -2091,6 +2091,7 @@ GameObject:
   - component: {fileID: 786326890}
   - component: {fileID: 786326895}
   - component: {fileID: 786326897}
+  - component: {fileID: 786326896}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -2201,6 +2202,56 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9525eccb22d8464d91c833020bbf898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 17
+  timeThreshHold: 5
+  increaseVelocity: 0
+  MovementSpeed: 0.2
+  IsBallMovingUP: 0
+  IsGrounded: 0
+  oldPos: 0
+  anim: {fileID: 1571178521}
+  isDead: 0
+  targetPosition: {x: 0, y: 0, z: 0}
+  jump: {fileID: 634636924}
+  bad: {fileID: 507277820}
+  skinIndex: 0
+  movementPermission: 0
+  movementPermission2: 0
+  splashParticleEffect: {fileID: 1880164197650561996, guid: b8a1f7957009ab347bff9980c2757c38, type: 3}
+  ParticleColors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.54923743, g: 0.8490566, b: 0.5398718, a: 1}
+  - {r: 0.7924528, g: 0.55184335, b: 0.26464927, a: 1}
+  - {r: 0, g: 1, b: 0.28220916, a: 1}
+  - {r: 0.735849, g: 0.690032, b: 0.690032, a: 1}
+  - {r: 0.86274517, g: 0.7843138, b: 0.5921569, a: 1}
+  - {r: 0.7490196, g: 0.8745099, b: 0.13333334, a: 1}
+  - {r: 0.38405123, g: 0.5791348, b: 0.8773585, a: 1}
+  - {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
+  - {r: 0.36862746, g: 0.23137257, b: 0.20000002, a: 1}
+  - {r: 1, g: 0.90159327, b: 0.37169808, a: 1}
+  - {r: 1, g: 0.90196085, b: 0.37254903, a: 1}
+  - {r: 1, g: 0.90196085, b: 0.37254903, a: 1}
+  - {r: 1, g: 0.90196085, b: 0.37254903, a: 1}
+  - {r: 1, g: 0.90196085, b: 0.37254903, a: 1}
+  - {r: 1, g: 0.90196085, b: 0.37254903, a: 1}
+  - {r: 1, g: 0.90196085, b: 0.37254903, a: 1}
+  - {r: 1, g: 0.90196085, b: 0.37254903, a: 1}
+  - {r: 1, g: 0.90196085, b: 0.37254903, a: 1}
+  theCorrectAnswer: 0
+  deadOneTime: 0
+--- !u!114 &786326896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786326889}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caaf87aeda5e620489ed37f219caacf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 17

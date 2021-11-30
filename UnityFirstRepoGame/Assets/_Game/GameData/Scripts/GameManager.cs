@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
     public Text highScoreText;
     public int DiamondsNumber;
     public Text Diamonds;
+    public int count = 0;
+    public Transform WAMove;
 
 
     // Start is called before the first frame update

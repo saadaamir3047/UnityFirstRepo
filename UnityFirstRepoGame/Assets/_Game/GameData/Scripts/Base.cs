@@ -20,6 +20,7 @@ public class Base : MonoBehaviour
     public AudioSource bad;
     public GameManager gm;
     public Color myColor;
+    public int GameMode = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,173 +50,357 @@ public class Base : MonoBehaviour
         yield return new WaitForSeconds(2f);
         bj.movementPermission = false;
         bj.movementPermission2 = false;
-     }
+    }
 
+    IEnumerator WaitJustBit()
+    {
+        Debug.Log("The Croutine has Started.");
+        yield return new WaitForSeconds(0.2f);
+        Debug.Log("The Croutine Wait is Over.");
+        
+    }
+    
     private void OnMouseDown()
     {
-        if (canJump)
-        {
-            
-            AS.DisableJump();
-            WaitPanelUI.ShowUI();
-            bj.theCorrectAnswer = true;
-            bj.movementPermission = true;
-            StartCoroutine(wait2Sec());
-            bj.targetPosition = new Vector3(transform.position.x, bj.transform.position.y, transform.position.z);
-            bj.MoveTo();
+        GameMode = 1;
+        if (GameMode == 1)
+        {   
             if (!bj.isDead && wrightAns)
-            {
-                QM.slider2.SetActive(true);
-                Debug.Log("You Answered in" + QM.TimeToAnswer);
-                QM.slider2.GetComponent<Slider>().value = bj.timeThreshHold;
-                if (QM.TimeToAnswer < bj.timeThreshHold)
-                {
-                    bj.increaseVelocity += 2.0f;
-                    bj.velocity += bj.increaseVelocity;
-                }
-                else if(QM.TimeToAnswer > bj.timeThreshHold)
-                {
-                    bj.velocity = 17.0f;
-                }
-                QM.TimeToAnswer = 0f;
-
-
-
-                StartCoroutine(waitForBlueColor());
-                gm.score++;
-                AnswerSpawner.instance.newAns(transform.parent);
-                cm.NewPos();
-
-                AnswerSpawner.instance.delBox();
-
-                if (gm.all)
-                {
-                    QM.nextAns();
-                }
-                if (gm.multiply)
-                {
-                    QM.dividemultiply();
-
-                }
-                if (gm.equation)
-                {
-                    QM.equation();
-
-                }
-                if (gm.conversion)
-                {
-                    QM.conversion();
-                }
-                if (gm.plus)
-                {
-                    QM.additionsubs();
-                }
-                if (gm.addEasy)
-                {
-                    QM.add2number1to10();
-                    //QM.DecToFraction();
-                }
-                if (gm.addMedium)
-                {
-                    QM.add2numbert20to100();
-                    //QM.FractionToDec();
-                }
-                if (gm.addHard)
-                {
-                    QM.add2numbert100to1000();
-                }
-                if (gm.SubEasy)
-                {
-                    QM.subs2number1to10();
-                }
-                if (gm.SubHard)
-                {
-                    QM.subs2numbert1to100();
-                }
-                if (gm.mulEasy)
-                {
-                    QM.multiplcation2number2to10();
-                }
-                if (gm.mulHard)
-                {
-                    QM.multiplcation2number2to10and10to20();
-                }
-                if (gm.divEasy)
-                {
-                    QM.division2to50();
-                }
-                if (gm.divHard)
-                {
-                    QM.division2to100();
-                }
-                if (gm.kg)
-                {
-                    QM.kgconversion();
-                }
-                if (gm.meter)
-                {
-                    QM.mconversion();
-                }
-                if (gm.metersq)
-                {
-                    QM.m2conversion();
-                }
-                if (gm.centiMeter)
-                {
-                    QM.cm3conversion();
-                }
-                if (gm.miliLiters)
-                {
-                    QM.mlconversion();
-                }
-                if (gm.dbms)
-                {
-                    QM.dmas();
-                }
-                if (gm.roots)
-                {
-                    QM.roots();
-                }
-                if (gm.simpleEq)
-                {
-                    QM.simpleequation();
-                }
-                if (gm.fractionToDecimal)
-                {
-                    QM.FractionToDec();
-                }
-                if (gm.DecimalToFraction)
-                {
-                    QM.DecToFraction();
-                }
-                if (gm.DecimalOrFractionBoth)
-                {
-                    QM.DecimalFractionBoth();
-                }
-                if (gm.TwoDices)
-                {
-                    QM.DiceTwo();
-                }
-                if (gm.ThreeDices)
-                {
-                    QM.DiceThree();
-                }
-                if (gm.MixDices)
-                {
-                    QM.MixDices();
-                }
-                if (SoundManager.instance.canPlaySound)
-                    good.Play();
-                //gameObject.GetComponent<Renderer>().material.color = Color.blue;
-            }
-
-            if (wrightAns != true)
             {
                 StartCoroutine(waitForRedColor());
                 //gameObject.GetComponent<Renderer>().material.color = Color.red;
                 //bj.isDead = true;
                 StartCoroutine(waitAndDie());
                 StartCoroutine(waitForRetryPannel());
+
+            }
+            if (wrightAns != true)
+            {
+                Destroy(gameObject, 0.0f);
+                gm.count++;
+                if (gm.count >= 3)
+                {
+                    cm.NewPos();
+                    AnswerSpawner.instance.newAns(transform.parent);
+                    if (QM.TimeToAnswer < bj.timeThreshHold)
+                    {
+                        bj.increaseVelocity += 2.0f;
+                        bj.velocity += bj.increaseVelocity;
+                    }
+                    else if (QM.TimeToAnswer > bj.timeThreshHold)
+                    {
+                        bj.velocity = 17.0f;
+                    }
+                    QM.TimeToAnswer = 0f;
+
+                    //cm.NewPos();
+                    StartCoroutine(waitForBlueColor());
+                    gm.score++;
+
+
+                    //gm.WAMove = gameObject.transform.parent.GetComponent<BaseParent>().ChildTarget;
+                    //bj.targetPosition = new Vector3(gm.WAMove.position.x, bj.transform.position.y, gm.WAMove.position.z);
+                    //bj.MoveTo();
+                    AnswerSpawner.instance.delBox();
+                    gm.count = 0;
+                    AS.DisableJump();
+                    WaitPanelUI.ShowUI();
+                    bj.theCorrectAnswer = true;
+                    bj.movementPermission = true;
+                    StartCoroutine(wait2Sec());
+                    //gm.WAMove = gameObject.GetComponent<BaseParent>().ChildTarget;
+                    //gm.WAMove = gameObject.transform.parent.GetComponent<BaseParent>().ChildTarget;
+                    QM.slider2.SetActive(true);
+                    QM.slider2.GetComponent<Slider>().value = bj.timeThreshHold;
+                    //bj.targetPosition = new Vector3(gm.WAMove.position.x, bj.transform.position.y, gm.WAMove.position.z);
+                    //bj.MoveTo();
+
+                    if (gm.all)
+                    {
+                        QM.nextAns();
+                    }
+                    if (gm.multiply)
+                    {
+                        QM.dividemultiply();
+                    }
+                    if (gm.equation)
+                    {
+                        QM.equation();
+                    }
+                    if (gm.conversion)
+                    {
+                        QM.conversion();
+                    }
+                    if (gm.plus)
+                    {
+                        QM.additionsubs();
+                    }
+                    if (gm.addEasy)
+                    {
+                        QM.add2number1to10();
+                        //QM.DecToFraction();
+                    }
+                    if (gm.addMedium)
+                    {
+                        QM.add2numbert20to100();
+                        //QM.FractionToDec();
+                    }
+                    if (gm.addHard)
+                    {
+                        QM.add2numbert100to1000();
+                    }
+                    if (gm.SubEasy)
+                    {
+                        QM.subs2number1to10();
+                    }
+                    if (gm.SubHard)
+                    {
+                        QM.subs2numbert1to100();
+                    }
+                    if (gm.mulEasy)
+                    {
+                        QM.multiplcation2number2to10();
+                    }
+                    if (gm.mulHard)
+                    {
+                        QM.multiplcation2number2to10and10to20();
+                    }
+                    if (gm.divEasy)
+                    {
+                        QM.division2to50();
+                    }
+                    if (gm.divHard)
+                    {
+                        QM.division2to100();
+                    }
+                    if (gm.kg)
+                    {
+                        QM.kgconversion();
+                    }
+                    if (gm.meter)
+                    {
+                        QM.mconversion();
+                    }
+                    if (gm.metersq)
+                    {
+                        QM.m2conversion();
+                    }
+                    if (gm.centiMeter)
+                    {
+                        QM.cm3conversion();
+                    }
+                    if (gm.miliLiters)
+                    {
+                        QM.mlconversion();
+                    }
+                    if (gm.dbms)
+                    {
+                        QM.dmas();
+                    }
+                    if (gm.roots)
+                    {
+                        QM.roots();
+                    }
+                    if (gm.simpleEq)
+                    {
+                        QM.simpleequation();
+                    }
+                    if (gm.fractionToDecimal)
+                    {
+                        QM.FractionToDec();
+                    }
+                    if (gm.DecimalToFraction)
+                    {
+                        QM.DecToFraction();
+                    }
+                    if (gm.DecimalOrFractionBoth)
+                    {
+                        QM.DecimalFractionBoth();
+                    }
+                    if (gm.TwoDices)
+                    {
+                        QM.DiceTwo();
+                    }
+                    if (gm.ThreeDices)
+                    {
+                        QM.DiceThree();
+                    }
+                    if (gm.MixDices)
+                    {
+                        QM.MixDices();
+                    }
+                    if (SoundManager.instance.canPlaySound)
+                        good.Play();
+                    Debug.Log("The Croutine Has Ended Now.");
+                    //gameObject.transform.parent.GetComponent<BaseParent>().enabled = false;
+                    //gameObject.transform.parent.GetComponent<BaseParent>().enabled = false;
+                }
+            }
+        }
+        else
+        {
+            if (canJump)
+            {
+                AS.DisableJump();
+                WaitPanelUI.ShowUI();
+                bj.theCorrectAnswer = true;
+                bj.movementPermission = true;
+                StartCoroutine(wait2Sec());
+                bj.targetPosition = new Vector3(transform.position.x, bj.transform.position.y, transform.position.z);
+                bj.MoveTo();
+                if (!bj.isDead && wrightAns)
+                {
+                    QM.slider2.SetActive(true);
+                    Debug.Log("You Answered in" + QM.TimeToAnswer);
+                    QM.slider2.GetComponent<Slider>().value = bj.timeThreshHold;
+                    if (QM.TimeToAnswer < bj.timeThreshHold)
+                    {
+                        bj.increaseVelocity += 2.0f;
+                        bj.velocity += bj.increaseVelocity;
+                    }
+                    else if (QM.TimeToAnswer > bj.timeThreshHold)
+                    {
+                        bj.velocity = 17.0f;
+                    }
+                    QM.TimeToAnswer = 0f;
+
+
+                    StartCoroutine(waitForBlueColor());
+                    gm.score++;
+                    AnswerSpawner.instance.newAns(transform.parent);
+                    cm.NewPos();
+
+                    AnswerSpawner.instance.delBox();
+
+                    if (gm.all)
+                    {
+                        QM.nextAns();
+                    }
+                    if (gm.multiply)
+                    {
+                        QM.dividemultiply();
+
+                    }
+                    if (gm.equation)
+                    {
+                        QM.equation();
+
+                    }
+                    if (gm.conversion)
+                    {
+                        QM.conversion();
+                    }
+                    if (gm.plus)
+                    {
+                        QM.additionsubs();
+                    }
+                    if (gm.addEasy)
+                    {
+                        QM.add2number1to10();
+                        //QM.DecToFraction();
+                    }
+                    if (gm.addMedium)
+                    {
+                        QM.add2numbert20to100();
+                        //QM.FractionToDec();
+                    }
+                    if (gm.addHard)
+                    {
+                        QM.add2numbert100to1000();
+                    }
+                    if (gm.SubEasy)
+                    {
+                        QM.subs2number1to10();
+                    }
+                    if (gm.SubHard)
+                    {
+                        QM.subs2numbert1to100();
+                    }
+                    if (gm.mulEasy)
+                    {
+                        QM.multiplcation2number2to10();
+                    }
+                    if (gm.mulHard)
+                    {
+                        QM.multiplcation2number2to10and10to20();
+                    }
+                    if (gm.divEasy)
+                    {
+                        QM.division2to50();
+                    }
+                    if (gm.divHard)
+                    {
+                        QM.division2to100();
+                    }
+                    if (gm.kg)
+                    {
+                        QM.kgconversion();
+                    }
+                    if (gm.meter)
+                    {
+                        QM.mconversion();
+                    }
+                    if (gm.metersq)
+                    {
+                        QM.m2conversion();
+                    }
+                    if (gm.centiMeter)
+                    {
+                        QM.cm3conversion();
+                    }
+                    if (gm.miliLiters)
+                    {
+                        QM.mlconversion();
+                    }
+                    if (gm.dbms)
+                    {
+                        QM.dmas();
+                    }
+                    if (gm.roots)
+                    {
+                        QM.roots();
+                    }
+                    if (gm.simpleEq)
+                    {
+                        QM.simpleequation();
+                    }
+                    if (gm.fractionToDecimal)
+                    {
+                        QM.FractionToDec();
+                    }
+                    if (gm.DecimalToFraction)
+                    {
+                        QM.DecToFraction();
+                    }
+                    if (gm.DecimalOrFractionBoth)
+                    {
+                        QM.DecimalFractionBoth();
+                    }
+                    if (gm.TwoDices)
+                    {
+                        QM.DiceTwo();
+                    }
+                    if (gm.ThreeDices)
+                    {
+                        QM.DiceThree();
+                    }
+                    if (gm.MixDices)
+                    {
+                        QM.MixDices();
+                    }
+                    if (SoundManager.instance.canPlaySound)
+                        good.Play();
+                    //gameObject.GetComponent<Renderer>().material.color = Color.blue;
+                }
+
+                if (wrightAns != true)
+                {
+                    StartCoroutine(waitForRedColor());
+                    //gameObject.GetComponent<Renderer>().material.color = Color.red;
+                    //bj.isDead = true;
+                    StartCoroutine(waitAndDie());
+                    StartCoroutine(waitForRetryPannel());
+                }
             }
         }
     }

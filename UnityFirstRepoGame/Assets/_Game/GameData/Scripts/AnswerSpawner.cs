@@ -12,7 +12,16 @@ public class AnswerSpawner : MonoBehaviour
     GameObject Dimo;
     public Queue<GameObject> GoQue;
     public int StepsCount = 0;
-
+    public GameManager gm;
+    public BallJump bj;
+    public Transform WATransform;
+    public CamMove cm;
+    private void Awake()
+    {
+        bj = GameObject.Find("Ball").GetComponent<BallJump>();
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        cm = GameObject.Find("Main Camera").GetComponent<CamMove>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +56,19 @@ public class AnswerSpawner : MonoBehaviour
             }
             StepsCount = -1;
         }
+        WATransform = t;
+        StartCoroutine(WAwait());
+        //bj.MoveTo();
     }
+    IEnumerator WAwait()
+    {
+        yield return new WaitForSeconds(0.2f);
+        gm.WAMove = WATransform.GetComponent<BaseParent>().ChildTarget;
+        bj.targetPosition = new Vector3(gm.WAMove.position.x, bj.transform.position.y, gm.WAMove.position.z);
+        bj.MoveTo();
+    }
+
+
     public void delBox()
     {
         if (GoQue.Count == 11)

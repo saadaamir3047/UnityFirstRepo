@@ -7,14 +7,18 @@ public class BaseParent : MonoBehaviour
 {
     public QuestionManager QM;
     public GameManager gm;
+    public Transform ChildTarget;
+    public BallJump bj;
     // Start is called before the first frame update
     private void Awake()
     {
         QM = GameObject.Find("QuestionManager").GetComponent<QuestionManager>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        bj = GameObject.Find("Ball").GetComponent<BallJump>();
     }
     void Start()
     {
+        
         if (!gm.DecimalToFraction)
         {
             transform.GetChild(0).GetComponent<Base>().ansText.text = QM.w.ToString();
@@ -34,8 +38,23 @@ public class BaseParent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        ChildTarget = transform.GetChild(0);
+        if (transform.childCount == 1)
+        {
+            ChildTarget = transform.GetChild(0);
+            //gm.WAMove = ChildTarget;
+            //bj.targetPosition = new Vector3(gm.WAMove.position.x, bj.transform.position.y, gm.WAMove.position.z);
+            //bj.MoveTo();
+        }
+        //StartCoroutine(waitaLil());
     }
+
+    IEnumerator waitaLil()
+    {
+        yield return new WaitForSeconds(0.2f);
+        ChildTarget = transform.GetChild(0);
+    }
+
     public void CanJumpFalse()
     {
 

@@ -5,9 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
-public class QuestionManager : MonoBehaviour
+public class QMWrongAnswer : MonoBehaviour
 {
-    public static QuestionManager instance;
+    public static QMWrongAnswer instance;
 
     public GameManager gm;
 
