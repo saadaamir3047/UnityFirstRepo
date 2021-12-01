@@ -34,6 +34,9 @@ public class BallJump : MonoBehaviour
     public bool theCorrectAnswer = false;
 
     public bool deadOneTime = true;
+    public GameObject ballSphere;
+    public GameObject ballSmooth;
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +44,9 @@ public class BallJump : MonoBehaviour
         enableTheSkin();
         rb = GetComponent<Rigidbody>();
         deadOneTime = true;
+        //var tempSmothBall = ballSmooth.GetComponent<ParticleSystem>().main;
+        //tempSmothBall.startColor = ParticleColors[PlayerPrefs.GetInt("skinEquiped", 0)];
+        ballSmooth.GetComponent<MeshRenderer>().material = ballSphere.transform.GetChild(skinIndex).GetComponent<MeshRenderer>().material;
     }
 
     // Update is called once per frame
@@ -95,6 +101,7 @@ public class BallJump : MonoBehaviour
             GameObject temp =  Instantiate(splashParticleEffect, transform.position, Quaternion.identity);
             var temp2 =  temp.GetComponent<ParticleSystem>().main;
             temp2.startColor = ParticleColors[PlayerPrefs.GetInt("skinEquiped", 0)];
+
         }
     }
 

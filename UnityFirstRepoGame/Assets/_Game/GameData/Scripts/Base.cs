@@ -427,8 +427,10 @@ public class Base : MonoBehaviour
     }
     IEnumerator waitForRetryPannel()
     {
-
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+        bj.ballSphere.SetActive(false);
+        bj.ballSmooth.SetActive(true);
+        yield return new WaitForSeconds(1f);
         GameOverPannelUI.ShowUI();
     }
 
@@ -436,6 +438,8 @@ public class Base : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         bj.isDead = true;
+        
+
    //     SoundManager.instance.playDeathSound();
     }
 

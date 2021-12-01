@@ -942,8 +942,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.8679962, y: 7.102}
-  m_SizeDelta: {x: -172.477, y: -14.204}
+  m_AnchoredPosition: {x: -0.5243988, y: 7.102001}
+  m_SizeDelta: {x: -90.5127, y: -14.204}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3590955226705370175
 CanvasRenderer:
@@ -1357,7 +1357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   english: Decimal
-  danish: Ddecimaler
+  danish: Decimaler
 --- !u!1 &3590955227217936502
 GameObject:
   m_ObjectHideFlags: 0

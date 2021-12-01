@@ -1855,7 +1855,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   english: Mix
-  danish: blande
+  danish: blandet
 --- !u!1 &4922920442453801024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1949,7 +1949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   english: Hard
-  danish: "H\xE5rdt"
+  danish: "Sv\xE6rt"
 --- !u!1 &4922920442465948750
 GameObject:
   m_ObjectHideFlags: 0
@@ -2512,7 +2512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   english: Hard
-  danish: "H\xE5rdt"
+  danish: "Sv\xE6rt"
 --- !u!1 &4922920442846401044
 GameObject:
   m_ObjectHideFlags: 0

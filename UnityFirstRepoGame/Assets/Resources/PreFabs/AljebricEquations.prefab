@@ -567,7 +567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   english: Mix e.q
-  danish: Blande e.q
+  danish: Blandet e.q
 --- !u!1 &8523331052641071520
 GameObject:
   m_ObjectHideFlags: 0
