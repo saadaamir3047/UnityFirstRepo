@@ -61,6 +61,10 @@ public class GameOverPannelUI : MonoBehaviour
 	public void SetStats()
     {
 		HighScore = PlayerPrefs.GetInt("HighScore", 0);
-		highScoreText.text = "HighScore: " + HighScore;
+		if (PlayerPrefs.GetString("language", "english") == "english")
+			highScoreText.text = "HighScore: " + HighScore;
+		else
+			highScoreText.text = "Højeste Score: " + HighScore;
+
 	}
 }

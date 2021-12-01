@@ -918,6 +918,7 @@ GameObject:
   - component: {fileID: 3590955226705370173}
   - component: {fileID: 3590955226705370175}
   - component: {fileID: 3590955226705370174}
+  - component: {fileID: 4048223370533855891}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -986,6 +987,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 0.7
   m_Text: Mix Both
+--- !u!114 &4048223370533855891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3590955226705370172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbc99f2a700da446b2f052eb5f37ff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  english: Mix Both
+  danish: Bland begge
 --- !u!1 &3590955226888410136
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,6 +1012,7 @@ GameObject:
   - component: {fileID: 3590955226888410137}
   - component: {fileID: 3590955226888410139}
   - component: {fileID: 3590955226888410138}
+  - component: {fileID: 3642444779040896439}
   m_Layer: 5
   m_Name: TitleText
   m_TagString: Untagged
@@ -1065,6 +1081,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Fractions & Decimals
+--- !u!114 &3642444779040896439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3590955226888410136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbc99f2a700da446b2f052eb5f37ff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  english: Fractions & Decimals
+  danish: "Br\xF8ker & Decimaler "
 --- !u!1 &3590955227027294530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1076,6 +1106,7 @@ GameObject:
   - component: {fileID: 3590955227027294531}
   - component: {fileID: 3590955227027294589}
   - component: {fileID: 3590955227027294588}
+  - component: {fileID: 6044426137836796371}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -1144,6 +1175,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 0.7
   m_Text: Fraction
+--- !u!114 &6044426137836796371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3590955227027294530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbc99f2a700da446b2f052eb5f37ff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  english: Fraction
+  danish: "Br\xF8ker "
 --- !u!1 &3590955227070436610
 GameObject:
   m_ObjectHideFlags: 0
@@ -1230,6 +1275,7 @@ GameObject:
   - component: {fileID: 3590955227074259833}
   - component: {fileID: 3590955227074259835}
   - component: {fileID: 3590955227074259834}
+  - component: {fileID: 6448065447677199035}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -1298,6 +1344,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 0.7
   m_Text: Decimal
+--- !u!114 &6448065447677199035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3590955227074259832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbc99f2a700da446b2f052eb5f37ff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  english: Decimal
+  danish: Ddecimaler
 --- !u!1 &3590955227217936502
 GameObject:
   m_ObjectHideFlags: 0

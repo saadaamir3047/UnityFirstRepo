@@ -10,6 +10,8 @@ public class SettingsPannelUI : MonoBehaviour
 	public GameObject SoundOffBtn;
 	public GameObject MusicOnBtn;
 	public GameObject MusicOffBtn;
+	public GameObject EnglishLang;
+	public GameObject DanishLang;
 
 	void Start()
 	{
@@ -35,6 +37,16 @@ public class SettingsPannelUI : MonoBehaviour
             MusicOffBtn.SetActive(false);
 
         }
+		if (PlayerPrefs.GetString("language", "english") == "english")
+        {
+			EnglishLang.SetActive(true);
+			DanishLang.SetActive(false);
+		}
+		else if (PlayerPrefs.GetString("language", "english") == "danish")
+        {
+			EnglishLang.SetActive(false);
+			DanishLang.SetActive(true);
+		}
     }
 
 	public static SettingsPannelUI ShowUI()
@@ -98,5 +110,21 @@ public class SettingsPannelUI : MonoBehaviour
 		PlayerPrefs.SetInt("Sound", 0);
 		SoundOnBtn.SetActive(true);
 		SoundOffBtn.SetActive(false);
+	}
+
+	public void LanguageEnglish()
+	{
+		SoundManager.instance.playBtnClickSound();
+		PlayerPrefs.SetString("language", "english");
+		EnglishLang.SetActive(true);
+		DanishLang.SetActive(false);
+	}
+
+	public void LanguageDanish()
+	{
+		SoundManager.instance.playBtnClickSound();
+		PlayerPrefs.SetString("language", "danish");
+		EnglishLang.SetActive(false);
+		DanishLang.SetActive(true);
 	}
 }

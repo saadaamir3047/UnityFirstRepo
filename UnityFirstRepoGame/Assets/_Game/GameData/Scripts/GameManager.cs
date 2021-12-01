@@ -220,6 +220,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         scoreText.text = "Score: " + score;
+
         if (PlayerPrefs.GetInt("HighScore", 0) < score)
             PlayerPrefs.SetInt("HighScore", score);
         Diamonds.text = PlayerPrefs.GetInt("totalDiamonds", 100) + "";

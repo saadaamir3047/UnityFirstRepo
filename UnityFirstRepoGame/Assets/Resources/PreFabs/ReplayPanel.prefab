@@ -708,6 +708,7 @@ GameObject:
   - component: {fileID: 6673154517419490880}
   - component: {fileID: 6673154517419490894}
   - component: {fileID: 6673154517419490881}
+  - component: {fileID: 7387665261815077393}
   m_Layer: 5
   m_Name: GameOverText
   m_TagString: Untagged
@@ -776,6 +777,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: GameOver
+--- !u!114 &7387665261815077393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6673154517419490883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbc99f2a700da446b2f052eb5f37ff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  english: Game Over
+  danish: 'Spillet er slut '
 --- !u!1 &6673154517436083722
 GameObject:
   m_ObjectHideFlags: 0

@@ -62,8 +62,8 @@ public class Base : MonoBehaviour
     
     private void OnMouseDown()
     {
-        GameMode = 1;
-        if (GameMode == 1)
+        //GameMode = 1;
+        if (PlayerPrefs.GetInt("GameMode", 0) == 1)
         {   
             if (!bj.isDead && wrightAns)
             {
@@ -80,8 +80,11 @@ public class Base : MonoBehaviour
                 gm.count++;
                 if (gm.count >= 3)
                 {
+                    gm.count = 0;
                     cm.NewPos();
+
                     AnswerSpawner.instance.newAns(transform.parent);
+                    
                     if (QM.TimeToAnswer < bj.timeThreshHold)
                     {
                         bj.increaseVelocity += 2.0f;
@@ -102,7 +105,7 @@ public class Base : MonoBehaviour
                     //bj.targetPosition = new Vector3(gm.WAMove.position.x, bj.transform.position.y, gm.WAMove.position.z);
                     //bj.MoveTo();
                     AnswerSpawner.instance.delBox();
-                    gm.count = 0;
+                    
                     AS.DisableJump();
                     WaitPanelUI.ShowUI();
                     bj.theCorrectAnswer = true;

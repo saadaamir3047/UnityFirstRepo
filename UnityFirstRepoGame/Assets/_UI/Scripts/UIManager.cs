@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     public GameObject SoundOffBtn;
     public GameObject MusicOnBtn;
     public GameObject MusicOffBtn;
+    public GameObject CorrectModeBtn;
+    public GameObject WrongModeBtn;
     public Text Diamonds;
 
     void Awake()
@@ -21,12 +23,36 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         PlayerPrefs.SetInt("totalDiamonds", 1000);
+        
+        if (PlayerPrefs.GetInt("GameMode", 0) == 0)
+        {
+            CorrectModeBtn.SetActive(true);
+            WrongModeBtn.SetActive(false);
+        }
+        else if (PlayerPrefs.GetInt("GameMode", 0) == 1)
+        {
+            CorrectModeBtn.SetActive(false);
+            WrongModeBtn.SetActive(true);
+
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         Diamonds.text = PlayerPrefs.GetInt("totalDiamonds", 200) + "";
+        
+        if (PlayerPrefs.GetInt("GameMode", 0) == 0)
+        {
+            CorrectModeBtn.SetActive(true);
+            WrongModeBtn.SetActive(false);
+        }
+        else if (PlayerPrefs.GetInt("GameMode", 0) == 1)
+        {
+            CorrectModeBtn.SetActive(false);
+            WrongModeBtn.SetActive(true);
+
+        }
     }
 
     public void openSettingsPannel()
@@ -101,7 +127,21 @@ public class UIManager : MonoBehaviour
         PlayerPrefs.SetInt("gameType", 5);
         SceneManager.LoadScene("SampleScene");
     }
+    public void CorrectMode()
+    {
+        SoundManager.instance.playBtnClickSound();
+        PlayerPrefs.SetInt("GameMode", 0);
+        CorrectModeBtn.SetActive(true);
+        WrongModeBtn.SetActive(false);
+    }
 
-    
+    public void WrongMode()
+    {
+        SoundManager.instance.playBtnClickSound();
+        PlayerPrefs.SetInt("GameMode", 1);
+        CorrectModeBtn.SetActive(false);
+        WrongModeBtn.SetActive(true);
+    }
+
 
 }

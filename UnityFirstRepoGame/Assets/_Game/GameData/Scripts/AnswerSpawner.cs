@@ -46,20 +46,22 @@ public class AnswerSpawner : MonoBehaviour
         QuestionManager.instance.BP = go.GetComponent<BaseParent>();
         GoQue.Enqueue(go);
         StepsCount++;
-        if(StepsCount == 4)
+        if (StepsCount == 4)
         {
             Transform newPos = t;
-            for(int i=0; i<4; i++)
-            {
-                newPos = t.transform.GetChild(i).transform;
-                Dimo = Instantiate(Diamond, new Vector3(newPos.position.x, newPos.position.y, newPos.position.z - 2), Quaternion.identity);
-            }
+            newPos = t.transform.GetChild(0).transform;
+            Dimo = Instantiate(Diamond, new Vector3(-3.5f, newPos.position.y, newPos.position.z - 2), Quaternion.identity);
+            Dimo = Instantiate(Diamond, new Vector3(-1.15f, newPos.position.y, newPos.position.z - 2), Quaternion.identity);
+            Dimo = Instantiate(Diamond, new Vector3(1.15f, newPos.position.y, newPos.position.z - 2), Quaternion.identity);
+            Dimo = Instantiate(Diamond, new Vector3(3.5f, newPos.position.y, newPos.position.z - 2), Quaternion.identity);
             StepsCount = -1;
         }
         WATransform = t;
-        StartCoroutine(WAwait());
         //bj.MoveTo();
+        if (PlayerPrefs.GetInt("GameMode", 0) == 1)
+            StartCoroutine(WAwait());
     }
+
     IEnumerator WAwait()
     {
         yield return new WaitForSeconds(0.2f);

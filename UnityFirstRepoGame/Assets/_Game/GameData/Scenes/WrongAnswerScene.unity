@@ -1546,6 +1546,8 @@ MonoBehaviour:
   highScoreText: {fileID: 0}
   DiamondsNumber: 0
   Diamonds: {fileID: 1939875976}
+  count: 0
+  WAMove: {fileID: 0}
 --- !u!1001 &458332513
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4456,6 +4458,10 @@ MonoBehaviour:
   BaseAnswer: {fileID: 9115744275069699574, guid: 9396ebedf96c9c6488b953329bd7e0bf, type: 3}
   Diamond: {fileID: 4377897979222313166, guid: 2cb41e8d8f0e33b4a97b0e4a5773d2a4, type: 3}
   StepsCount: 0
+  gm: {fileID: 0}
+  bj: {fileID: 0}
+  WATransform: {fileID: 0}
+  cm: {fileID: 0}
 --- !u!1 &1558606616
 GameObject:
   m_ObjectHideFlags: 0

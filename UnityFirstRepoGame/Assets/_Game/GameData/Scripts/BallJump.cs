@@ -103,7 +103,8 @@ public class BallJump : MonoBehaviour
         if ((collision.gameObject.tag == "ground") && (!isDead))
         {
             IsGrounded = false;
-            jump.Play();
+            if (SoundManager.instance.canPlaySound)
+                jump.Play();
             if (theCorrectAnswer)
             {
                 theCorrectAnswer = false;
@@ -124,8 +125,9 @@ public class BallJump : MonoBehaviour
     {
         if(other.gameObject.tag == "Diamond" && !isDead)
         {
-            Destroy(other.gameObject);            
-            SoundManager.instance.allEffects[4].Play();
+            Destroy(other.gameObject);
+            if (SoundManager.instance.canPlaySound)
+                SoundManager.instance.allEffects[4].Play();
             PlayerPrefs.SetInt("totalDiamonds", PlayerPrefs.GetInt("totalDiamonds", 100)+1);
         }
 
@@ -133,10 +135,12 @@ public class BallJump : MonoBehaviour
         {
             if (deadOneTime)
             {
-                SoundManager.instance.playDeathSound();
+                if (SoundManager.instance.canPlaySound)
+                    SoundManager.instance.playDeathSound();
                 print("Death Sound played!");
             }
             anim.SetBool("Dead", true);
+
             SoundManager.instance.bgMusic.Stop();
             deadOneTime = false;
         }
