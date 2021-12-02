@@ -126,7 +126,7 @@ public class WABallJump : MonoBehaviour
         {
             Destroy(other.gameObject);            
             SoundManager.instance.allEffects[4].Play();
-            PlayerPrefs.SetInt("totalDiamonds", PlayerPrefs.GetInt("totalDiamonds", 100)+1);
+            PlayerPrefs.SetInt("totalDiamonds", PlayerPrefs.GetInt("totalDiamonds", 200)+1);
         }
 
         if (isDead && other.gameObject.tag == "ground")

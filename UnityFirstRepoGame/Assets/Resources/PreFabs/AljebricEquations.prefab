@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8523331052404002245}
   - component: {fileID: 8523331052404002247}
   - component: {fileID: 8523331052404002244}
+  - component: {fileID: 6075191025001734475}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -79,6 +80,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 0.7
   m_Text: DMAS
+--- !u!114 &6075191025001734475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8523331052404002106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbc99f2a700da446b2f052eb5f37ff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  english: DMAS
+  danish: Regnehierarki
 --- !u!1 &8523331052490258498
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +345,7 @@ GameObject:
   - component: {fileID: 8523331052532031443}
   - component: {fileID: 8523331052532031453}
   - component: {fileID: 8523331052532031442}
+  - component: {fileID: 2489201183494425439}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -398,6 +414,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 0.7
   m_Text: E.Q
+--- !u!114 &2489201183494425439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8523331052532031440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbc99f2a700da446b2f052eb5f37ff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  english: E.Q
+  danish: Ligninger
 --- !u!1 &8523331052628384017
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,6 +856,7 @@ GameObject:
   - component: {fileID: 8523331052768498541}
   - component: {fileID: 8523331052768498543}
   - component: {fileID: 8523331052768498540}
+  - component: {fileID: 5060755666323732899}
   m_Layer: 5
   m_Name: TitleText
   m_TagString: Untagged
@@ -894,6 +925,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Aljebric Equations
+--- !u!114 &5060755666323732899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8523331052768498530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbc99f2a700da446b2f052eb5f37ff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  english: Aljebric Equations
+  danish: Tal & Ligninger
 --- !u!1 &8523331052771058997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1703,6 +1748,7 @@ GameObject:
   - component: {fileID: 8523331053257177817}
   - component: {fileID: 8523331053257177819}
   - component: {fileID: 8523331053257177816}
+  - component: {fileID: 6916746408110897587}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -1771,6 +1817,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 0.7
   m_Text: Roots
+--- !u!114 &6916746408110897587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8523331053257177822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbc99f2a700da446b2f052eb5f37ff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  english: Roots
+  danish: "R\xF8dder"
 --- !u!1 &8523331053275899718
 GameObject:
   m_ObjectHideFlags: 0

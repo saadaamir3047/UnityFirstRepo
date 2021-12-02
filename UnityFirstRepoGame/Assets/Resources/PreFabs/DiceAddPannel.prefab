@@ -1759,7 +1759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   english: Dices Addition
-  danish: "Terninger Tilf\xF8jelse"
+  danish: Tal & terninger
 --- !u!1 &7320481377275952110
 GameObject:
   m_ObjectHideFlags: 0

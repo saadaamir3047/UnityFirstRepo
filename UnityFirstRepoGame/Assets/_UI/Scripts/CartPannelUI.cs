@@ -17,15 +17,29 @@ public class CartPannelUI : MonoBehaviour
 
     private void Update()
     {
-		diomandCoins.text = PlayerPrefs.GetInt("totalDiamonds", 100) + "";
+		diomandCoins.text = PlayerPrefs.GetInt("totalDiamonds", 200) + "";
 		for(int i=1; i<19; i++)
         {
 			if (PlayerPrefs.GetInt("skinBought" + i, 0) == 1)
 			{
-				ballText[i-1].text = "Bought";
+				if (PlayerPrefs.GetString("language", "english") == "english")
+				{
+					ballText[i-1].text = "Bought";
+				}
+				else if (PlayerPrefs.GetString("language", "english") == "danish")
+				{
+					ballText[i - 1].text = "Købt";
+				}
 				if(PlayerPrefs.GetInt("skinEquiped", 0) == i)
                 {
-					ballText[i - 1].text = "equiped";
+					if (PlayerPrefs.GetString("language", "english") == "english")
+					{
+						ballText[i - 1].text = "equiped";
+					}
+					else if (PlayerPrefs.GetString("language", "english") == "danish")
+					{
+						ballText[i - 1].text = "udstyret";
+					}
 					ballText[i - 1].transform.parent.transform.gameObject.GetComponent<Image>().color = new Color32(144, 238, 144, 255);
 				}
 				ballText[i - 1].transform.parent.transform.GetChild(0).gameObject.SetActive(false);

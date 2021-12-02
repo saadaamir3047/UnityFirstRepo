@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
 public class GameManager : MonoBehaviour
 {
     public GameObject retrypanel;
@@ -54,6 +55,8 @@ public class GameManager : MonoBehaviour
     public Text Diamonds;
     public int count = 0;
     public Transform WAMove;
+    float startCounter;
+    public Text StartCounterText;
 
 
     // Start is called before the first frame update
@@ -63,6 +66,36 @@ public class GameManager : MonoBehaviour
         checkType();
         score = 0;
         Application.targetFrameRate = 30;
+        Time.timeScale = 0;
+        startCounter = 3;
+        StartCoroutine(StartCounters());
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        scoreText.text = "Score: " + score;
+        //startCounter -= Time.deltaTime;
+        if (startCounter <= 0) { 
+            Destroy(StartCounterText);
+            Time.timeScale = 1.5f;
+        }
+        else
+            StartCounterText.text = startCounter.ToString();
+        
+        if (PlayerPrefs.GetInt("HighScore", 0) < score)
+            PlayerPrefs.SetInt("HighScore", score);
+        Diamonds.text = PlayerPrefs.GetInt("totalDiamonds", 200) + "";
+    }
+
+    IEnumerator StartCounters()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        startCounter--;
+        yield return new WaitForSecondsRealtime(1f);
+        startCounter--;
+        yield return new WaitForSecondsRealtime(1f);
+        startCounter--;
     }
 
     public void checkType()
@@ -216,16 +249,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        scoreText.text = "Score: " + score;
-
-        if (PlayerPrefs.GetInt("HighScore", 0) < score)
-            PlayerPrefs.SetInt("HighScore", score);
-        Diamonds.text = PlayerPrefs.GetInt("totalDiamonds", 100) + "";
-    }
-
+   
     public void retry()
     {
         SoundManager.instance.playBtnClickSound();

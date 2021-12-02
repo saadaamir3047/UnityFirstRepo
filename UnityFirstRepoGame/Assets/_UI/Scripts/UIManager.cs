@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.SetInt("totalDiamonds", 1000);
+        //PlayerPrefs.SetInt("totalDiamonds", 1000);
         
         if (PlayerPrefs.GetInt("GameMode", 0) == 0)
         {

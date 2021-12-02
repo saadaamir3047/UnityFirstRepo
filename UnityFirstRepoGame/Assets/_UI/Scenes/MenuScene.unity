@@ -1507,7 +1507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   english: Al-Jabric  Equations
-  danish: Al-Jabric  ligning
+  danish: Al-Jabric  ligninger
 --- !u!1 &370427384
 GameObject:
   m_ObjectHideFlags: 0
@@ -3081,7 +3081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   english: Wrong Answers
-  danish: Forkert svar
+  danish: Forkerte svar
 --- !u!1 &1049052560
 GameObject:
   m_ObjectHideFlags: 0
@@ -3400,7 +3400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   english: Conversion Equations
-  danish: Konverterings ligninger
+  danish: Omregn Enheder
 --- !u!1 &1257566338
 GameObject:
   m_ObjectHideFlags: 0
@@ -4163,7 +4163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   english: Correct Answers
-  danish: Rigtigt svar
+  danish: Rigtig svar
 --- !u!1 &1566704223
 GameObject:
   m_ObjectHideFlags: 0
@@ -4881,7 +4881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   english: Dices Addition
-  danish: "Terninger tilf\xF8jelse"
+  danish: Tal & terninger
 --- !u!1 &1747911134
 GameObject:
   m_ObjectHideFlags: 0
